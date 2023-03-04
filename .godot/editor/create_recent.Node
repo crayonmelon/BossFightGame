@@ -1,10 +1,11 @@
 AnimationPlayer
+SubViewportContainer
+SubViewport
+Camera3D
 Timer
 MeshInstance3D
 RichTextLabel
 CanvasLayer
-SubViewport
-Camera3D
 Node3D
 Sprite3D
 Node

@@ -31,4 +31,3 @@ shape = SubResource("ConcavePolygonShape3D_xfg5h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
-current = true

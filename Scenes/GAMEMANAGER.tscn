@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://v6tdhbmxk6vg"]
+[gd_scene load_steps=16 format=3 uid="uid://v6tdhbmxk6vg"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_yimu3"]
 [ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="2_dod1i"]
@@ -19,20 +19,40 @@ sky = SubResource("Sky_6aeu4")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Animation" id="Animation_7hdhh"]
-resource_name = "TransistionEffect"
-length = 3.0
+[sub_resource type="Animation" id="Animation_yb5o8"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainArea:scale")
+tracks/0/path = NodePath("SubViewport:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(240, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_m304o"]
+resource_name = "transition_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 2, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+"values": [Vector2i(240, 160), Vector2i(6, 4), Vector2i(240, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8a7j"]
+_data = {
+"RESET": SubResource("Animation_yb5o8"),
+"transition_anim": SubResource("Animation_m304o")
 }
 
 [sub_resource type="Animation" id="Animation_41c6y"]
@@ -48,6 +68,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7hdhh"]
+resource_name = "TransistionEffect"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainArea:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h27nq"]
@@ -71,18 +107,45 @@ environment = SubResource("Environment_6ice1")
 
 [node name="LevelContainer" type="Node" parent="."]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "Test"
+
 [node name="LevelArea" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="LevelArea"]
+[node name="MainCamera" type="Camera3D" parent="LevelArea"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.75983, 4.22526)
 current = true
 
-[node name="SubViewport" type="SubViewport" parent="LevelArea/Camera3D"]
+[node name="SubViewport" type="SubViewport" parent="LevelArea/MainCamera"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/Camera3D/SubViewport"]
-offset_right = 40.0
-offset_bottom = 40.0
-text = "TEst"
+[node name="transitionContainer" type="SubViewportContainer" parent="LevelArea"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="LevelArea/transitionContainer"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(240, 160)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="TransitionCamera" type="Camera3D" parent="LevelArea/transitionContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75983, 4.22526)
+current = true
+
+[node name="TransisitonAnim" type="AnimationPlayer" parent="LevelArea/transitionContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_t8a7j")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelArea"]
 libraries = {
@@ -111,10 +174,3 @@ mesh = SubResource("BoxMesh_fh1ro")
 [node name="TempDesk2" type="MeshInstance3D" parent="LevelArea/MainArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730381, 0)
 mesh = SubResource("BoxMesh_fh1ro")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-text = "Test"

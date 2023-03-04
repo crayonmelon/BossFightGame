@@ -1,0 +1,12 @@
+AnimationPlayer
+Timer
+MeshInstance3D
+RichTextLabel
+CanvasLayer
+SubViewport
+Camera3D
+Node3D
+Sprite3D
+Node
+CollisionShape3D
+StaticBody3D

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2oqq1n0yw4vu"]
+
+[ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_a3ecm"]
+[ext_resource type="Script" path="res://Scenes/ClickMe.gd" id="2_vdgi2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjgir"]
+albedo_color = Color(0.505882, 0.584314, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dk2p4"]
+material = SubResource("StandardMaterial3D_bjgir")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv6ok"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfg5h"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("1_a3ecm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+mesh = SubResource("BoxMesh_dk2p4")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_fv6ok")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+script = ExtResource("2_vdgi2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xfg5h")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
+current = true

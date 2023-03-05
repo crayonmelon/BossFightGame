@@ -1,33 +1,129 @@
-[gd_scene load_steps=7 format=3 uid="uid://buyeook1d50qt"]
+[gd_scene load_steps=10 format=3 uid="uid://buyeook1d50qt"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_18h8i"]
-[ext_resource type="Script" path="res://Scenes/ClickMe.gd" id="2_6vkgc"]
+[ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="2_ockes"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjgir"]
-albedo_color = Color(0.505882, 0.584314, 1, 1)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iwfxo"]
+height = 0.188739
+radius = 0.543232
 
-[sub_resource type="BoxMesh" id="BoxMesh_dk2p4"]
-material = SubResource("StandardMaterial3D_bjgir")
+[sub_resource type="CylinderMesh" id="CylinderMesh_7f554"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3575"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfg5h"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="PrismMesh" id="PrismMesh_ny15e"]
+
+[sub_resource type="Animation" id="Animation_ekn5k"]
+resource_name = "text_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h347q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivwv2"]
+_data = {
+"RESET": SubResource("Animation_h347q"),
+"text_anim": SubResource("Animation_ekn5k")
+}
 
 [node name="Level" type="Node3D"]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("1_18h8i")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_dk2p4")
+[node name="GameContainer" type="Node3D" parent="."]
+process_mode = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameContainer"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.64383)
+script = ExtResource("2_ockes")
+angle = Vector3(0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameContainer/StaticBody3D"]
+shape = SubResource("CylinderShape3D_iwfxo")
+
+[node name="Spinner" type="MeshInstance3D" parent="GameContainer/StaticBody3D"]
+transform = Transform3D(1.15487, 0, 0, 0, 0.0418184, 2.59348e-13, 0, 0, 1.13086, 0, 0, 0)
+mesh = SubResource("CylinderMesh_7f554")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3575")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-script = ExtResource("2_6vkgc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_xfg5h")
+[node name="triangle" type="MeshInstance3D" parent="GameContainer/StaticBody3D/Spinner"]
+transform = Transform3D(-2.19187e-08, -0.501442, 0, -8.57344e-07, 3.74757e-14, -2.30506, 0.501442, -2.19187e-08, -2.57596e-09, 0.2172, 0, 0)
+mesh = SubResource("PrismMesh_ny15e")
+skeleton = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(120, 12)
+size_flags_horizontal = 3
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "[center]Do the Thing
+"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_ivwv2")
+}

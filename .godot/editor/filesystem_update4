@@ -1,3 +1,8 @@
 res://Scenes/test.tscn
 res://Scenes/GAMEMANAGER.tscn
 res://Scenes/Level/level.tscn
+res://Scripts/GameManager.gd
+res://Scripts/LevelLogic.gd
+res://Scenes/Level/level3.tscn
+res://Scenes/Level/level2.tscn
+res://Scenes/Level/Spinner.gd

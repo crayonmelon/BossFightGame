@@ -109,10 +109,18 @@ environment = SubResource("Environment_6ice1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_right = 40.0
+[node name="points" type="RichTextLabel" parent="CanvasLayer"]
+offset_right = 127.0
+offset_bottom = 30.0
+text = "0
+"
+
+[node name="lives" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 225.0
+offset_right = 239.0
 offset_bottom = 40.0
-text = "Test"
+text = "4
+"
 
 [node name="LevelArea" type="Node3D" parent="."]
 

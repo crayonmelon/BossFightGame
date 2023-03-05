@@ -3,9 +3,13 @@ extends Node
 
 @export var testing = true
 
+#Score 
 @export var lives = 4
 @export var points = 0
+@export var difficulty = 0
 
+@onready var points_text = $CanvasLayer/points
+@onready var lives_text = $CanvasLayer/lives
 
 @export var LEVELS: Array[Resource]
 
@@ -19,22 +23,30 @@ extends Node
 @onready var transition_camera = $LevelArea/transitionContainer/SubViewport/TransitionCamera
 @onready var transition_container = $LevelArea/transitionContainer
 
-var level_camera 
 
+
+var level_camera 
 var transition_time = 3
 
 func _ready():
 	if !testing:
 		_transisition()
-	pass
-
+		
+	else:
+		main_camera.current = false
+		transition_camera.current = false
+		
+	
 func _transisition():
+	
+	points_text.text = str(points)
+	lives_text.text = str(lives)
 	
 	print("anim")
 	
 	if level_container.get_child_count() > 0:
-		level_container.get_child(0).queue_free()
 		_camera_transition_effect(camera.MAIN)
+		level_container.get_child(0).queue_free()
 		
 	else:
 		_change_camera(camera.MAIN)

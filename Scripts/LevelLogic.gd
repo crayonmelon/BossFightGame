@@ -1,17 +1,24 @@
 class_name Level
-
 extends Node3D
+
+@export var level_time = 5
 
 @onready var gameManager = get_node("/root/Gamemanager")
 @onready var timer = Timer.new()
 
+@onready var instructions_anim = $CanvasLayer/AnimationPlayer
+@onready var game_container = $GameContainer
+
 enum STATE {OPENING ,PLAYING, FAILED, WON}
 var current_state = STATE.OPENING
-
-var level_time = 3
+var difficulty
 
 func _ready():
-	
+	#pause
+	instructions_anim.play("text_anim")
+	await instructions_anim.animation_finished
+
+	#unpause
 	current_state = STATE.PLAYING
 	timer.timeout.connect(_lose)
 	timer.wait_time = level_time

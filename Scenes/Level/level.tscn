@@ -1,17 +1,85 @@
-[gd_scene load_steps=10 format=3 uid="uid://buyeook1d50qt"]
+[gd_scene load_steps=15 format=3 uid="uid://buyeook1d50qt"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_18h8i"]
 [ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="2_ockes"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_iwfxo"]
-height = 0.188739
-radius = 0.543232
+[ext_resource type="Texture2D" uid="uid://05fp551khec7" path="res://Sprites/startSprite.png" id="3_cfphs"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7f554"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3575"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ip1cv"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.0146517, 0.470697, 0.470697, 0.0735213, 0.352957, 0.47061, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.0146517, 0.470697, -0.470697, 0.5, -0.5, 0.5, -0.0146517, 0.470697, 0.470697, 0.0146517, 0.470697, -0.470697)
+
 [sub_resource type="PrismMesh" id="PrismMesh_ny15e"]
+
+[sub_resource type="Animation" id="Animation_0timg"]
+resource_name = "star_spin"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 10]
+}
+
+[sub_resource type="Animation" id="Animation_bkf3a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vii8i"]
+_data = {
+"RESET": SubResource("Animation_bkf3a"),
+"star_spin": SubResource("Animation_0timg")
+}
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lht58"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_h347q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ekn5k"]
 resource_name = "text_anim"
@@ -41,33 +109,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_h347q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Instructions:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Instructions:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ivwv2"]
 _data = {
 "RESET": SubResource("Animation_h347q"),
@@ -82,27 +123,59 @@ script = ExtResource("1_18h8i")
 [node name="GameContainer" type="Node3D" parent="."]
 process_mode = 1
 
-[node name="StaticBody3D" type="StaticBody3D" parent="GameContainer"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.64383)
+[node name="Spinner" type="Node3D" parent="GameContainer"]
+transform = Transform3D(0.5, 3.78552e-08, -0.866025, 0.866025, -2.18557e-08, 0.5, 0, -1, -4.37114e-08, 0, 0, 2.64383)
 script = ExtResource("2_ockes")
 angle = Vector3(0, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameContainer/StaticBody3D"]
-shape = SubResource("CylinderShape3D_iwfxo")
-
-[node name="Spinner" type="MeshInstance3D" parent="GameContainer/StaticBody3D"]
+[node name="SpinnerMesh" type="MeshInstance3D" parent="GameContainer/Spinner"]
 transform = Transform3D(1.15487, 0, 0, 0, 0.0418184, 2.59348e-13, 0, 0, 1.13086, 0, 0, 0)
 mesh = SubResource("CylinderMesh_7f554")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3575")
 
-[node name="triangle" type="MeshInstance3D" parent="GameContainer/StaticBody3D/Spinner"]
-transform = Transform3D(-2.19187e-08, -0.501442, 0, -8.57344e-07, 3.74757e-14, -2.30506, 0.501442, -2.19187e-08, -2.57596e-09, 0.2172, 0, 0)
+[node name="targetFella" type="Area3D" parent="GameContainer/Spinner/SpinnerMesh"]
+transform = Transform3D(-7.45058e-09, -0.217, 9.48537e-09, 5.68434e-14, -9.48536e-09, -0.217, 0.217, -2.23517e-08, -2.77556e-16, 0.2172, -1.41837, 1.26085e-08)
+
+[node name="TargetCol2" type="CollisionShape3D" parent="GameContainer/Spinner/SpinnerMesh/targetFella"]
+transform = Transform3D(2.311, 5.961e-08, -8.57422e-07, -5.961e-08, 2.311, 2.19208e-08, 8.57422e-07, -2.19208e-08, 2.311, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ip1cv")
+
+[node name="Mes" type="MeshInstance3D" parent="GameContainer/Spinner/SpinnerMesh/targetFella"]
+transform = Transform3D(2.31079, -4.26326e-14, -8.55217e-07, 7.46183e-14, 2.31079, 2.18645e-08, 8.57344e-07, -2.19188e-08, 2.30506, 0, 0, 0)
 mesh = SubResource("PrismMesh_ny15e")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="GameContainer/Spinner/SpinnerMesh/targetFella/Mes"]
+transform = Transform3D(-2.68221e-07, -1, -7.78745e-07, 1, 2.98023e-08, 8.47367e-07, -8.47367e-07, -7.78744e-07, 1, 0.0127068, -0.234435, 2.19425)
+billboard = 1
+double_sided = false
+texture = ExtResource("3_cfphs")
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/Spinner/SpinnerMesh/targetFella/Mes/Sprite3D"]
+autoplay = "star_spin"
+libraries = {
+"": SubResource("AnimationLibrary_vii8i")
+}
+
+[node name="PointerStatic" type="Area3D" parent="GameContainer"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 4.13736e-08, -4.13736e-08, 1.8085e-15, 1, 0.764294, 0, 2.64383)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GameContainer/PointerStatic"]
+transform = Transform3D(0.241112, -5.00414e-23, 0, -1.8041e-23, 0.668786, 2.64698e-23, 0, 0, 0.162244, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_lht58")
+
+[node name="triangle" type="MeshInstance3D" parent="GameContainer/PointerStatic"]
+transform = Transform3D(0.241112, -3.51764e-22, 0, 1.26819e-22, 0.668786, 0, 0, 0, 0.162244, 0, 0, 0)
+mesh = SubResource("PrismMesh_ny15e")
+skeleton = NodePath("../../Spinner")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
+current = true
+fov = 90.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -127,3 +200,6 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_ivwv2")
 }
+
+[connection signal="area_entered" from="GameContainer/PointerStatic" to="GameContainer/Spinner" method="_on_pointer_static_area_entered"]
+[connection signal="area_exited" from="GameContainer/PointerStatic" to="GameContainer/Spinner" method="_on_pointer_static_area_exited"]

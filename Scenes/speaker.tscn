@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc4awsopxk7s4"]
+
+[ext_resource type="PackedScene" uid="uid://co7muc6l3oe7g" path="res://models/Speaker/speaker.gltf" id="1_0502v"]
+[ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="2_k0g6y"]
+[ext_resource type="Texture2D" uid="uid://cglvwqw6h66c6" path="res://models/Speaker/speakeruv.png" id="3_btnxd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpk6m"]
+render_priority = 0
+shader = ExtResource("2_k0g6y")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("3_btnxd")
+
+[node name="speaker" instance=ExtResource("1_0502v")]
+
+[node name="Cylinder" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_cpk6m")

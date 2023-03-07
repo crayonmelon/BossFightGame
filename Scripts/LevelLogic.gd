@@ -16,8 +16,8 @@ var difficulty
 func _ready():
 	#pause
 	instructions_anim.play("text_anim")
+	
 	await instructions_anim.animation_finished
-
 	#unpause
 	current_state = STATE.PLAYING
 	timer.timeout.connect(_lose)
@@ -31,14 +31,14 @@ func _process(delta):
 
 func _win():
 	
-	if current_state == STATE.PLAYING:
+	if current_state == STATE.PLAYING || current_state == STATE.OPENING:
 		
 		current_state = STATE.WON
 		gameManager._success()
 
 func _lose():
 	
-	if current_state == STATE.PLAYING:
+	if current_state == STATE.PLAYING or current_state == STATE.OPENING:
 		
 		current_state = STATE.FAILED
 		gameManager._failed()

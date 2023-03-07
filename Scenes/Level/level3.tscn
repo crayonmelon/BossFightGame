@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2ck0uckicp1i"]
+[gd_scene load_steps=12 format=3 uid="uid://c2ck0uckicp1i"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_jxpvm"]
+[ext_resource type="PackedScene" uid="uid://vnmt1evckf0v" path="res://Scenes/lady.tscn" id="2_gye7x"]
 [ext_resource type="Script" path="res://Scenes/ClickMe.gd" id="2_r4vxi"]
+[ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="3_wo7tv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjgir"]
 albedo_color = Color(0.505882, 0.584314, 1, 1)
@@ -13,6 +15,33 @@ material = SubResource("StandardMaterial3D_bjgir")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfg5h"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_h347q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ekn5k"]
 resource_name = "text_anim"
@@ -42,33 +71,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_h347q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Instructions:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Instructions:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ivwv2"]
 _data = {
 "RESET": SubResource("Animation_h347q"),
@@ -82,20 +84,31 @@ script = ExtResource("1_jxpvm")
 [node name="GameContainer" type="Node3D" parent="."]
 process_mode = 1
 
+[node name="lady" parent="GameContainer" instance=ExtResource("2_gye7x")]
+transform = Transform3D(-1.99999, 0.0054284, 0.00129444, 0.00542854, 1.99999, 0.000221202, -0.00129383, 0.000224714, -2, 0, -0.6, 0.857776)
+script = ExtResource("3_wo7tv")
+angle = Vector3(0, 1, 0)
+degrees_per_second = 60.0
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37226e-05, -0.00353801, 0.00122833)
+visible = false
 mesh = SubResource("BoxMesh_dk2p4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_e3575")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0361004, 0.0460935, 0.0157666)
 script = ExtResource("2_r4vxi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xfg5h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000639439, 2.38419e-07, 4.49148)
 current = true
+fov = 90.0
+size = 4.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

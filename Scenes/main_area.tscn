@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b663wreamb1co"]
+
+[ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="1_ru0e6"]
+[ext_resource type="Texture2D" uid="uid://jkwq4codlffk" path="res://Sprites/icon.svg" id="2_r4auj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_87m0e"]
+viewport_path = NodePath("Sprite3D/screen")
+
+[node name="MainArea" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.402827, 2)
+
+[node name="crtbody" parent="." instance=ExtResource("1_ru0e6")]
+transform = Transform3D(-0.993381, 0, 0.114868, 0, 1, 0, -0.114868, 0, -0.993381, 0, 0.919665, 0.112372)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.07584, 0, 0, 0, 0.997008, 0.0772933, 0, -0.0772933, 0.997008, -0.035272, 0.939364, 0.637889)
+pixel_size = 0.02
+texture = SubResource("ViewportTexture_87m0e")
+
+[node name="screen" type="SubViewport" parent="Sprite3D"]
+handle_input_locally = false
+size = Vector2i(64, 52)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite3D/screen"]
+texture = ExtResource("2_r4auj")
+offset = Vector2(1, 1)

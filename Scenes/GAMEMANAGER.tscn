@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://v6tdhbmxk6vg"]
+[gd_scene load_steps=20 format=3 uid="uid://v6tdhbmxk6vg"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_yimu3"]
 [ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="2_dod1i"]
 [ext_resource type="PackedScene" uid="uid://b2oqq1n0yw4vu" path="res://Scenes/Level/level2.tscn" id="3_ln1av"]
 [ext_resource type="PackedScene" uid="uid://c2ck0uckicp1i" path="res://Scenes/Level/level3.tscn" id="4_vp85a"]
+[ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="5_ux5le"]
+[ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="6_sorei"]
+[ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="7_etc0t"]
+[ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="7_qqf66"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q3bc"]
 sky_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
@@ -24,7 +28,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport:size")
+tracks/0/path = NodePath("transitionViewport:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -39,7 +43,7 @@ resource_name = "transition_anim"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport:size")
+tracks/0/path = NodePath("transitionViewport:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -60,7 +64,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainArea:scale")
+tracks/0/path = NodePath("Main_area/crtbody:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,6 +73,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_area/crtbody:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.919665, 0.112372)]
+}
 
 [sub_resource type="Animation" id="Animation_7hdhh"]
 resource_name = "TransistionEffect"
@@ -76,14 +92,26 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainArea:scale")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Main_area/crtbody:scale")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1), Vector3(1, 1, 1), Vector3(1.1, 1.1, 1.1)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main_area/crtbody:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h27nq"]
@@ -92,10 +120,10 @@ _data = {
 "TransistionEffect": SubResource("Animation_7hdhh")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pnvgq"]
-viewport_path = NodePath("LevelArea/Node3D/Sprite3D/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_5rtqf"]
+viewport_path = NodePath("LevelArea/Main_area/crtbody/ScreenNode/screenViewport")
 
-[sub_resource type="BoxMesh" id="BoxMesh_fh1ro"]
+[sub_resource type="QuadMesh" id="QuadMesh_gd84n"]
 
 [node name="GAMEMANAGER" type="Node"]
 script = ExtResource("1_yimu3")
@@ -123,10 +151,12 @@ text = "4
 "
 
 [node name="LevelArea" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28273, 0)
 
 [node name="MainCamera" type="Camera3D" parent="LevelArea"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.75983, 4.22526)
+transform = Transform3D(1, 0, 0, 0, 0.991301, 0.131616, 0, -0.131616, 0.991301, 0, 1.68444, 4.29664)
 current = true
+fov = 90.0
 
 [node name="SubViewport" type="SubViewport" parent="LevelArea/MainCamera"]
 
@@ -138,7 +168,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="LevelArea/transitionContainer"]
+[node name="transitionViewport" type="SubViewport" parent="LevelArea/transitionContainer"]
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
@@ -146,9 +176,10 @@ size = Vector2i(240, 160)
 size_2d_override_stretch = true
 render_target_update_mode = 0
 
-[node name="TransitionCamera" type="Camera3D" parent="LevelArea/transitionContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75983, 4.22526)
+[node name="TransitionCamera" type="Camera3D" parent="LevelArea/transitionContainer/transitionViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36664, 4.08247)
 current = true
+fov = 90.0
 
 [node name="TransisitonAnim" type="AnimationPlayer" parent="LevelArea/transitionContainer"]
 libraries = {
@@ -160,25 +191,50 @@ libraries = {
 "": SubResource("AnimationLibrary_h27nq")
 }
 
-[node name="MainArea" type="Node3D" parent="LevelArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.402827, 2)
+[node name="Main_area" type="Node3D" parent="LevelArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477144, 2)
 
-[node name="Sprite3D" type="Sprite3D" parent="LevelArea/MainArea"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.00171311, 1.16828, 0.54138)
-texture = SubResource("ViewportTexture_pnvgq")
+[node name="crtbody" parent="LevelArea/Main_area" instance=ExtResource("5_ux5le")]
+transform = Transform3D(-0.994466, -0.027852, 0.101295, -0.0482173, 0.977666, -0.204557, -0.0933352, -0.208309, -0.973599, 0, 0.919665, 0.112372)
 
-[node name="SubViewport" type="SubViewport" parent="LevelArea/MainArea/Sprite3D"]
-size = Vector2i(464, 32)
+[node name="ScreenNode" type="Sprite3D" parent="LevelArea/Main_area/crtbody"]
+transform = Transform3D(-0.89377, -0.0213904, -0.0589266, -0.0232771, 0.996416, 0.0790409, 0.0508803, 0.0801023, -0.998949, -0.0399127, 0.0458182, -0.594806)
+pixel_size = 0.02
+texture = SubResource("ViewportTexture_5rtqf")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/MainArea/Sprite3D/SubViewport"]
+[node name="screenViewport" type="SubViewport" parent="LevelArea/Main_area/crtbody/ScreenNode"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(64, 52)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="LevelData" type="Sprite2D" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
+position = Vector2(32, 26)
+scale = Vector2(0.1, 0.105)
+texture = ExtResource("6_sorei")
+offset = Vector2(1, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
 offset_right = 40.0
 offset_bottom = 40.0
-text = "yoo"
+bbcode_enabled = true
+text = "[center]WIN"
 
-[node name="TempDesk" type="MeshInstance3D" parent="LevelArea/MainArea"]
-transform = Transform3D(4.05608, 0, 0, 0, 1.81696, 0, 0, 0, 1.24024, 0, -0.674361, 0)
-mesh = SubResource("BoxMesh_fh1ro")
+[node name="MonitorCam" type="Camera3D" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
+fov = 90.0
+size = 4.0
 
-[node name="TempDesk2" type="MeshInstance3D" parent="LevelArea/MainArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730381, 0)
-mesh = SubResource("BoxMesh_fh1ro")
+[node name="wall" type="MeshInstance3D" parent="LevelArea/Main_area"]
+transform = Transform3D(13.5678, 0, 0, 0, 10.1204, 0, 0, 0, 1, 0, 0, -0.808116)
+mesh = SubResource("QuadMesh_gd84n")
+
+[node name="desk" parent="LevelArea" instance=ExtResource("7_etc0t")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.501048, 2.29015)
+
+[node name="speaker" parent="." instance=ExtResource("7_qqf66")]
+transform = Transform3D(0.167611, 0, -0.47107, 0, 0.5, 0, 0.47107, 0, 0.167611, -1.57623, -0.120133, 2.01204)
+
+[node name="speaker2" parent="." instance=ExtResource("7_qqf66")]
+transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 1.57088, -0.125133, 2.01545)

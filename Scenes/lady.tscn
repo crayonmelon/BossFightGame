@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://vnmt1evckf0v"]
+
+[ext_resource type="PackedScene" uid="uid://cqsm6dy3oymbu" path="res://models/LADY/lady.gltf" id="1_tpuii"]
+[ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="2_7hjua"]
+[ext_resource type="Texture2D" uid="uid://cfj848bu5moik" path="res://models/LADY/texture_1001.png" id="3_xfxq1"]
+[ext_resource type="Texture2D" uid="uid://dfmdilxo2r4pd" path="res://models/LADY/texture_1002.png" id="4_nksjh"]
+[ext_resource type="Texture2D" uid="uid://e4se0reosa7r" path="res://models/LADY/texture_1003.png" id="5_euwyv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tpf0"]
+render_priority = 0
+shader = ExtResource("2_7hjua")
+shader_parameter/jitter = 0.3
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("3_xfxq1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uny8x"]
+render_priority = 0
+shader = ExtResource("2_7hjua")
+shader_parameter/jitter = 0.3
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("4_nksjh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v76gr"]
+render_priority = 0
+shader = ExtResource("2_7hjua")
+shader_parameter/jitter = 0.3
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("5_euwyv")
+
+[node name="lady" instance=ExtResource("1_tpuii")]
+transform = Transform3D(0.999996, -0.0027142, -0.00064721, 0.00271427, 0.999996, 0.000110612, 0.000646909, -0.000112357, 1, 0, 0, 0)
+
+[node name="texturedMesh" parent="." index="0"]
+transform = Transform3D(-3.17865e-08, -1.19209e-07, -1, -1, -1.04216e-14, 3.17865e-08, 0, 1, -1.19209e-07, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_5tpf0")
+surface_material_override/1 = SubResource("ShaderMaterial_uny8x")
+surface_material_override/2 = SubResource("ShaderMaterial_v76gr")

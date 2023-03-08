@@ -8,8 +8,13 @@ res://models/CRT/CRTBODY/crtbody.tscn
 res://Scenes/main_area.tscn
 res://Scenes/speaker.tscn
 res://Scenes/crt2.tscn
-res://Scenes/Level/Spinner.gd
-res://Scripts/GameManager.gd
 res://Scenes/antique_roll_top_desk.tscn
-res://Shader/PSX.gdshader
 res://Scenes/desk.tscn
+res://Scenes/Level/moveOnLine.gd
+res://Scripts/LevelLogic.gd
+res://Scripts/GameManager.gd
+res://Scenes/ball.tscn
+res://Scenes/Level/ballSpawner.gd
+res://Scenes/speen.gd
+res://Scenes/Level/Spinner.gd
+res://Scenes/Level/BallCatchMiniGame.gd

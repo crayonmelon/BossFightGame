@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://v6tdhbmxk6vg"]
+[gd_scene load_steps=25 format=3 uid="uid://v6tdhbmxk6vg"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_yimu3"]
 [ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="2_dod1i"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c2ck0uckicp1i" path="res://Scenes/Level/level3.tscn" id="4_vp85a"]
 [ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="5_ux5le"]
 [ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="6_sorei"]
+[ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="7_4mxcu"]
 [ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="7_etc0t"]
 [ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="7_qqf66"]
+[ext_resource type="Texture2D" uid="uid://dbd2pofaga4fn" path="res://Sprites/wall.png" id="8_4i7r0"]
+[ext_resource type="Texture2D" uid="uid://cid5q46vesf2h" path="res://Sprites/ground.png" id="9_na0bb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q3bc"]
 sky_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
@@ -123,7 +126,27 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_5rtqf"]
 viewport_path = NodePath("LevelArea/Main_area/crtbody/ScreenNode/screenViewport")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tns6u"]
+render_priority = 0
+shader = ExtResource("7_4mxcu")
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("8_4i7r0")
+
 [sub_resource type="QuadMesh" id="QuadMesh_gd84n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y71pn"]
+render_priority = 0
+shader = ExtResource("7_4mxcu")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("9_na0bb")
 
 [node name="GAMEMANAGER" type="Node"]
 script = ExtResource("1_yimu3")
@@ -154,7 +177,7 @@ text = "4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28273, 0)
 
 [node name="MainCamera" type="Camera3D" parent="LevelArea"]
-transform = Transform3D(1, 0, 0, 0, 0.991301, 0.131616, 0, -0.131616, 0.991301, 0, 1.68444, 4.29664)
+transform = Transform3D(1, 0, 0, 0, 0.979099, 0.203385, 0, -0.203385, 0.979099, -0.0571246, 1.74093, 4.60235)
 current = true
 fov = 90.0
 
@@ -195,7 +218,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477144, 2)
 
 [node name="crtbody" parent="LevelArea/Main_area" instance=ExtResource("5_ux5le")]
-transform = Transform3D(-0.994466, -0.027852, 0.101295, -0.0482173, 0.977666, -0.204557, -0.0933352, -0.208309, -0.973599, 0, 0.919665, 0.112372)
+transform = Transform3D(-0.994466, -0.0278521, 0.101295, -0.0309691, 0.99909, -0.0293307, -0.100386, -0.0323054, -0.994424, 0, 0.919665, 0.112372)
 
 [node name="ScreenNode" type="Sprite3D" parent="LevelArea/Main_area/crtbody"]
 transform = Transform3D(-0.89377, -0.0213904, -0.0589266, -0.0232771, 0.996416, 0.0790409, 0.0508803, 0.0801023, -0.998949, -0.0399127, 0.0458182, -0.594806)
@@ -227,14 +250,20 @@ fov = 90.0
 size = 4.0
 
 [node name="wall" type="MeshInstance3D" parent="LevelArea/Main_area"]
-transform = Transform3D(13.5678, 0, 0, 0, 10.1204, 0, 0, 0, 1, 0, 0, -0.808116)
+transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 0, -0.808116)
+material_override = SubResource("ShaderMaterial_tns6u")
+mesh = SubResource("QuadMesh_gd84n")
+
+[node name="ground" type="MeshInstance3D" parent="LevelArea/Main_area"]
+transform = Transform3D(14.0547, 0, 0, 0, -3.70446e-07, 1.00076, 0, -8.47481, -4.37448e-08, 0, -1.51893, 3.21541)
+material_override = SubResource("ShaderMaterial_y71pn")
 mesh = SubResource("QuadMesh_gd84n")
 
 [node name="desk" parent="LevelArea" instance=ExtResource("7_etc0t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.501048, 2.29015)
 
 [node name="speaker" parent="." instance=ExtResource("7_qqf66")]
-transform = Transform3D(0.167611, 0, -0.47107, 0, 0.5, 0, 0.47107, 0, 0.167611, -1.57623, -0.120133, 2.01204)
+transform = Transform3D(0.167611, 0, -0.47107, 0, 0.5, 0, 0.47107, 0, 0.167611, -1.76693, -0.120133, 2.31524)
 
 [node name="speaker2" parent="." instance=ExtResource("7_qqf66")]
-transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 1.57088, -0.125133, 2.01545)
+transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 1.7968, -0.125133, 2.31865)

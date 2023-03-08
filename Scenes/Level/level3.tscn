@@ -1,20 +1,28 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2ck0uckicp1i"]
+[gd_scene load_steps=14 format=3 uid="uid://c2ck0uckicp1i"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_jxpvm"]
+[ext_resource type="Script" path="res://Scenes/Level/BallCatchMiniGame.gd" id="2_2l8wo"]
 [ext_resource type="PackedScene" uid="uid://vnmt1evckf0v" path="res://Scenes/lady.tscn" id="2_gye7x"]
-[ext_resource type="Script" path="res://Scenes/ClickMe.gd" id="2_r4vxi"]
-[ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="3_wo7tv"]
+[ext_resource type="Script" path="res://Scenes/Level/moveOnLine.gd" id="2_vu428"]
+[ext_resource type="Script" path="res://Scenes/speen.gd" id="4_ik1u0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjgir"]
-albedo_color = Color(0.505882, 0.584314, 1, 1)
+[sub_resource type="Curve3D" id="Curve3D_ep83h"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3, -0.196, -0.07, 0, 0, 0, 0, 0, 0, 3, -0.204, -0.072, 0, 0, 0, 0, 0, 0, -3, -0.196, -0.07),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
-[sub_resource type="BoxMesh" id="BoxMesh_dk2p4"]
-material = SubResource("StandardMaterial3D_bjgir")
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rr2fu"]
+points = PackedVector3Array(-0.548997, -0.116817, -0.458517, -0.400901, 0.293962, 0.574195, -0.476302, 0.293261, 0.571186, -0.401651, 0.772373, -0.112845, 0.0319394, -0.311743, 0.162954, -0.855157, -0.0553491, 0.320653, 0.0713989, 0.457068, -0.152212, -0.5003, 0.516226, -0.507092, 0.0319394, -0.134144, -0.32971, -0.736779, 0.595022, 0.30097, 0.0516692, 0.338628, 0.360136, -0.145535, -0.469457, -0.0141962, -0.125806, 0.752736, 0.103788, -0.663858, -0.176718, 0.399837, -0.700028, -0.306228, -0.0694722, -0.231749, 0.236385, -0.539472, 0.0319394, -0.153905, 0.340453, -0.657952, 0.752736, 0.0841051, -0.559396, 0.062844, -0.546574, -0.570309, 0.48136, 0.513715, -0.702986, 0.180213, 0.552897, 0.0516692, 0.181037, -0.408559, -0.139624, 0.534361, -0.311637, -0.136803, 0.349933, 0.495838, 0.0911286, 0.516226, 0.0447383, -0.559396, 0.792257, 0.143155, -0.457506, 0.0104757, 0.515007, -0.720427, -0.289817, 0.174467, -0.0801883, -0.442311, -0.0888106, -0.638223, -0.153905, -0.388876, -0.855157, 0.102365, 0.36002, -0.778955, 0.40702, 0.458914)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3575"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3kl8j"]
+viewport_path = NodePath("GameContainer/HEadPath/PathFollow3D/lady/Sprite3D/SubViewport")
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfg5h"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="PrismMesh" id="PrismMesh_o0bxb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uw0lm"]
+viewport_path = NodePath("GameContainer/BallDropper/PathFollow3D/Node3D/Sprite3D/SubViewport")
 
 [sub_resource type="Animation" id="Animation_h347q"]
 length = 0.001
@@ -83,26 +91,92 @@ script = ExtResource("1_jxpvm")
 
 [node name="GameContainer" type="Node3D" parent="."]
 process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25765, 0)
+script = ExtResource("2_2l8wo")
 
-[node name="lady" parent="GameContainer" instance=ExtResource("2_gye7x")]
-transform = Transform3D(-1.99999, 0.0054284, 0.00129444, 0.00542854, 1.99999, 0.000221202, -0.00129383, 0.000224714, -2, 0, -0.6, 0.857776)
-script = ExtResource("3_wo7tv")
+[node name="HEadPath" type="Path3D" parent="GameContainer"]
+transform = Transform3D(-1.99999, 0.0054284, 0.00129444, 0.00542854, 1.99999, 0.000221202, -0.00129383, 0.000224714, -2, 0, -1.43, -0.166844)
+curve = SubResource("Curve3D_ep83h")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="GameContainer/HEadPath"]
+transform = Transform3D(0.99994, 0, 0, 0, 0.999969, 0, 0, 0, 0.999909, 1.00018, -0.201334, -0.0713334)
+progress = 4.00001
+rotation_mode = 0
+script = ExtResource("2_vu428")
+
+[node name="lady" parent="GameContainer/HEadPath/PathFollow3D" instance=ExtResource("2_gye7x")]
+transform = Transform3D(1.2, 8.86714e-10, -6.98492e-11, -8.86714e-10, 1.2, 2.61934e-11, 6.98492e-11, -2.61934e-11, 1.2, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("4_ik1u0")
 angle = Vector3(0, 1, 0)
-degrees_per_second = 60.0
+degrees_per_second = 100.0
+randomiser = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.37226e-05, -0.00353801, 0.00122833)
-visible = false
-mesh = SubResource("BoxMesh_dk2p4")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_e3575")
+[node name="Area3D" type="Area3D" parent="GameContainer/HEadPath/PathFollow3D/lady"]
+transform = Transform3D(1, -4.475e-11, -2.91038e-10, 8.90886e-10, 1, 3.63798e-11, 5.82077e-11, 0, 1, 0.001131, 0.416678, 4.6134e-05)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0361004, 0.0460935, 0.0157666)
-script = ExtResource("2_r4vxi")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GameContainer/HEadPath/PathFollow3D/lady/Area3D"]
+transform = Transform3D(-2.09332e-07, 0.00103499, -0.799999, -0.8, -0.000179707, -2.31615e-08, -0.000179707, 0.799999, 0.00103499, -0.001131, -0.416678, -4.6134e-05)
+shape = SubResource("ConvexPolygonShape3D_rr2fu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_xfg5h")
+[node name="Sprite3D" type="Sprite3D" parent="GameContainer/HEadPath/PathFollow3D/lady"]
+transform = Transform3D(-3.00989, 0.01628, 5.12926e-07, 0.016339, 2.99901, 0.000220951, 2.06998e-06, 0.000663355, -0.998925, 0.00226206, 0.833357, 9.21488e-05)
+billboard = 2
+double_sided = false
+no_depth_test = true
+texture = SubResource("ViewportTexture_3kl8j")
+
+[node name="SubViewport" type="SubViewport" parent="GameContainer/HEadPath/PathFollow3D/lady/Sprite3D"]
+transparent_bg = true
+size = Vector2i(32, 32)
+size_2d_override_stretch = true
+
+[node name="BallsEntered" type="RichTextLabel" parent="GameContainer/HEadPath/PathFollow3D/lady/Sprite3D/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center]3"
+autowrap_mode = 0
+
+[node name="BallDropper" type="Path3D" parent="GameContainer"]
+transform = Transform3D(-1.99999, 0.0054284, 0.00129444, 0.00542854, 1.99999, 0.000221202, -0.00129383, 0.000224714, -2, 0, 5.50223, -0.166844)
+curve = SubResource("Curve3D_ep83h")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="GameContainer/BallDropper"]
+transform = Transform3D(0.99994, 0, 0, 0, 0.999969, 0, 0, 0, 0.999909, 1.00018, -0.201334, -0.0713334)
+progress = 4.00001
+rotation_mode = 0
+script = ExtResource("2_vu428")
+speed = -2.0
+
+[node name="Node3D" type="Node3D" parent="GameContainer/BallDropper/PathFollow3D"]
+transform = Transform3D(-0.500029, 0.00135722, -0.000323478, 0.00135714, 0.500014, 5.61805e-05, 0.000323639, 5.53054e-05, -0.500045, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GameContainer/BallDropper/PathFollow3D/Node3D"]
+transform = Transform3D(-1, 8.74228e-08, -1.03987e-11, -8.74228e-08, -1, -1.29984e-12, -1.16415e-10, -1.45519e-11, 0.0893243, 0, 0, 0)
+mesh = SubResource("PrismMesh_o0bxb")
+
+[node name="Sprite3D" type="Sprite3D" parent="GameContainer/BallDropper/PathFollow3D/Node3D"]
+transform = Transform3D(-2.99996, 0.0162851, 1.8835e-06, 0.0162851, 2.99996, 0.000663566, 1.71861e-06, 0.000663566, -3, -0.0922015, 0.0978386, 9.20296e-05)
+billboard = 2
+double_sided = false
+no_depth_test = true
+texture = SubResource("ViewportTexture_uw0lm")
+
+[node name="SubViewport" type="SubViewport" parent="GameContainer/BallDropper/PathFollow3D/Node3D/Sprite3D"]
+transparent_bg = true
+size = Vector2i(32, 32)
+size_2d_override_stretch = true
+
+[node name="BallsLeft" type="RichTextLabel" parent="GameContainer/BallDropper/PathFollow3D/Node3D/Sprite3D/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center]3"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000639439, 2.38419e-07, 4.49148)
@@ -124,7 +198,7 @@ pivot_offset = Vector2(120, 12)
 size_flags_horizontal = 3
 size_flags_vertical = 6
 bbcode_enabled = true
-text = "[center]Do the Thing
+text = "[center] Drop 3
 "
 scroll_active = false
 
@@ -132,3 +206,6 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_ivwv2")
 }
+
+[connection signal="body_entered" from="GameContainer/HEadPath/PathFollow3D/lady/Area3D" to="GameContainer" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="GameContainer/HEadPath/PathFollow3D/lady/Area3D" to="GameContainer" method="_on_area_3d_body_exited"]

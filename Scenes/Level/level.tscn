@@ -13,6 +13,21 @@ points = PackedVector3Array(-0.5, -0.5, -0.5, 0.0146517, 0.470697, 0.470697, 0.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_ny15e"]
 
+[sub_resource type="Animation" id="Animation_bkf3a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_0timg"]
 resource_name = "star_spin"
 length = 0.3
@@ -28,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 10]
-}
-
-[sub_resource type="Animation" id="Animation_bkf3a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vii8i"]
@@ -148,8 +148,10 @@ skeleton = NodePath("../../../..")
 
 [node name="Sprite3D" type="Sprite3D" parent="GameContainer/Spinner/SpinnerMesh/targetFella/Mes"]
 transform = Transform3D(-2.68221e-07, -1, -7.78745e-07, 1, 2.98023e-08, 8.47367e-07, -8.47367e-07, -7.78744e-07, 1, 0.0127068, -0.234435, 2.19425)
+cast_shadow = 0
 billboard = 1
 double_sided = false
+texture_filter = 1
 texture = ExtResource("3_cfphs")
 hframes = 3
 vframes = 4

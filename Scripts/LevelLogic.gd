@@ -2,6 +2,8 @@ class_name Level
 extends Node3D
 
 @export var level_time = 5
+@export var timeInf = false
+
 
 @onready var gameManager = get_node("/root/Gamemanager")
 @onready var timer = Timer.new()
@@ -24,7 +26,9 @@ func _ready():
 	timer.wait_time = level_time
 	timer.one_shot = true
 	add_child(timer)
-	timer.start()
+	
+	if !timeInf:
+		timer.start()
 
 func _process(delta):
 	pass

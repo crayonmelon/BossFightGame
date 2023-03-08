@@ -8,8 +8,6 @@ var spinning = true
 var entered = false
 
 func _process(delta):
-	
-	
 	if spinning:
 		rotate(angle, delta * deg_to_rad(degrees_per_second))
 

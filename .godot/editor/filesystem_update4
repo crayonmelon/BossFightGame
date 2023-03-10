@@ -1,5 +1,6 @@
-res://Scenes/GAMEMANAGER.tscn
+res://Audio/default_bus.tres
 res://Scenes/test.tscn
+res://Scenes/GAMEMANAGER.tscn
 res://Scenes/Level/level.tscn
 res://Scenes/Level/level3.tscn
 res://Scenes/Level/level2.tscn
@@ -10,11 +11,9 @@ res://Scenes/speaker.tscn
 res://Scenes/crt2.tscn
 res://Scenes/antique_roll_top_desk.tscn
 res://Scenes/desk.tscn
-res://Scenes/Level/moveOnLine.gd
-res://Scripts/LevelLogic.gd
-res://Scripts/GameManager.gd
 res://Scenes/ball.tscn
-res://Scenes/Level/ballSpawner.gd
-res://Scenes/speen.gd
-res://Scenes/Level/Spinner.gd
-res://Scenes/Level/BallCatchMiniGame.gd
+res://Scenes/Level/level4.tscn
+res://Scenes/maze.tscn
+res://Scenes/Level/scary-maze-mini-game.gd
+res://Scripts/GameManager.gd
+res://Scripts/LevelLogic.gd

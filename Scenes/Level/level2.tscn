@@ -1,18 +1,195 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2oqq1n0yw4vu"]
+[gd_scene load_steps=30 format=3 uid="uid://3s8i5xmkkkt0"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_a3ecm"]
-[ext_resource type="Script" path="res://Scenes/ClickMe.gd" id="2_vdgi2"]
+[ext_resource type="Texture2D" uid="uid://0dlus1nx8jpy" path="res://Sprites/carSpin.png" id="2_kdi27"]
+[ext_resource type="Script" path="res://Scenes/Level/PlayerJumpMiniGame.gd" id="2_x53w3"]
+[ext_resource type="Script" path="res://Scenes/Level/MoveLeft.gd" id="3_1oorm"]
+[ext_resource type="Texture2D" uid="uid://ckr143ndtshbv" path="res://Sprites/skeletonWalk.png" id="3_xi83a"]
+[ext_resource type="AudioStream" uid="uid://swg48plho46n" path="res://Audio/StageSelect.mp3" id="5_l3pfy"]
+[ext_resource type="AudioStream" uid="uid://6eg46b7qmcg4" path="res://Audio/impact.ogg" id="6_txnhp"]
+[ext_resource type="AudioStream" uid="uid://djiln31gfk1vt" path="res://Scenes/BOMP.mp3" id="7_utsmy"]
+[ext_resource type="AudioStream" uid="uid://i8gjkd7gnaud" path="res://Audio/BOMP.mp3" id="8_5qdv1"]
+[ext_resource type="AudioStream" uid="uid://dtv4xcnluwe4u" path="res://Audio/success/success_3.ogg" id="10_lvw0n"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjgir"]
-albedo_color = Color(0.505882, 0.584314, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lp1wv"]
+shading_mode = 0
+albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dk2p4"]
-material = SubResource("StandardMaterial3D_bjgir")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv6ok"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xfg5h"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="Animation" id="Animation_kmf3r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [19, null]
+}
+
+[sub_resource type="Animation" id="Animation_1bryr"]
+resource_name = "car_spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
+}
+
+[sub_resource type="Animation" id="Animation_upsob"]
+resource_name = "skelly_an"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mefug"]
+_data = {
+"RESET": SubResource("Animation_kmf3r"),
+"car_spin": SubResource("Animation_1bryr"),
+"skelly_an": SubResource("Animation_upsob")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sabk4"]
+size = Vector3(0.882403, 0.353072, 0.52265)
+
+[sub_resource type="Animation" id="Animation_j4qkt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.90638, -0.807838, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jq475"]
+resource_name = "car_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 0.9),
+"transitions": PackedFloat32Array(0.3, 0.574349, 0.0213444),
+"update": 0,
+"values": [Vector3(-1.90638, -0.807838, 3), Vector3(2, 1, 5), Vector3(0.1, -0.2, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.287175, 2),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(-12.5664, -12.5664, -12.5664)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_txnhp")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_utsmy")
+}],
+"times": PackedFloat32Array(0, 0.1)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ayem8"]
+resource_name = "jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 4, 0.2),
+"update": 0,
+"values": [Vector3(-1.90638, -0.807838, 3), Vector3(-1.906, 0.5, 3), Vector3(-1.90638, -0.807838, 3)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_5qdv1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emnpc"]
+_data = {
+"RESET": SubResource("Animation_j4qkt"),
+"car_hit": SubResource("Animation_jq475"),
+"jump": SubResource("Animation_ayem8")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vge5h"]
+size = Vector3(0.361224, 1, 3)
 
 [sub_resource type="Animation" id="Animation_h347q"]
 length = 0.001
@@ -75,24 +252,129 @@ _data = {
 "text_anim": SubResource("Animation_ekn5k")
 }
 
+[sub_resource type="Animation" id="Animation_a7meo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../GameContainer/PlayerArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.90638, -0.807838, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_0nwkv"]
+resource_name = "anim_success"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_lvw0n")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GameContainer/PlayerArea:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(2, 3.4822),
+"update": 0,
+"values": [Vector3(-1.90638, -0.807838, 3), Vector3(3, -0.808, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ax3ol"]
+_data = {
+"RESET": SubResource("Animation_a7meo"),
+"anim_success": SubResource("Animation_0nwkv")
+}
+
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("1_a3ecm")
+level_time = 3
+time_over_win = true
 
 [node name="GameContainer" type="Node3D" parent="."]
 process_mode = 1
+script = ExtResource("2_x53w3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 0)
+[node name="Floor" type="MeshInstance3D" parent="GameContainer"]
+transform = Transform3D(35.4738, 0, 0, 0, 0.998098, 0, 0, 0, 2.81295, 0, -1.73614, 2.50752)
+material_override = SubResource("StandardMaterial3D_lp1wv")
 mesh = SubResource("BoxMesh_dk2p4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_fv6ok")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-script = ExtResource("2_vdgi2")
+[node name="Car" type="Sprite3D" parent="GameContainer"]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, 15.5629, -1, 3)
+texture = ExtResource("2_kdi27")
+hframes = 2
+vframes = 10
+frame = 19
+script = ExtResource("3_1oorm")
+speed = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_xfg5h")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/Car"]
+autoplay = "car_spin"
+libraries = {
+"": SubResource("AnimationLibrary_mefug")
+}
+
+[node name="StaticBody3D" type="Area3D" parent="GameContainer/Car"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameContainer/Car/StaticBody3D"]
+shape = SubResource("BoxShape3D_sabk4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GameContainer/Car"]
+transform = Transform3D(0.625, 0, 0, 0, 0.625, 0, 0, 0, 0.625, 0.00898743, 1.19209e-07, 0.00631595)
+stream = ExtResource("5_l3pfy")
+volume_db = -20.0
+max_db = -10.0
+autoplay = true
+max_distance = 6.7
+panning_strength = 2.0
+
+[node name="PlayerArea" type="Area3D" parent="GameContainer"]
+transform = Transform3D(-0.8, 0, -2.02815e-06, 0, 0.8, 0, 2.02815e-06, 0, -0.8, -1.90638, -0.807838, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/PlayerArea"]
+libraries = {
+"": SubResource("AnimationLibrary_emnpc")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GameContainer/PlayerArea/AnimationPlayer"]
+volume_db = -16.0
+max_db = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameContainer/PlayerArea"]
+shape = SubResource("BoxShape3D_vge5h")
+
+[node name="Player" type="Sprite3D" parent="GameContainer/PlayerArea"]
+texture = ExtResource("3_xi83a")
+hframes = 5
+vframes = 3
+frame = 13
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/PlayerArea/Player"]
+autoplay = "skelly_an"
+libraries = {
+"": SubResource("AnimationLibrary_mefug")
+}
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
@@ -121,3 +403,14 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_ivwv2")
 }
+
+[node name="AnimationSuccess" type="AnimationPlayer" parent="."]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_ax3ol")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationSuccess"]
+
+[connection signal="area_entered" from="GameContainer/Car/StaticBody3D" to="GameContainer" method="_on_static_body_3d_area_entered"]
+[connection signal="body_entered" from="GameContainer/PlayerArea" to="GameContainer" method="_on_player_area_body_entered"]

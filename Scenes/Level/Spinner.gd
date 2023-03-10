@@ -28,5 +28,5 @@ func _on_pointer_static_area_entered(area):
 
 func _on_pointer_static_area_exited(area):
 	if area.name == "targetFella":
-		entered = true
+		entered = false
 	pass

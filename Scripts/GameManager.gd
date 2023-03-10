@@ -2,22 +2,27 @@ class_name GAMEMANAGER
 extends Node
 
 @export var testing = true
-
 #Score 
 @export var lives = 4
 @export var points = 0
 @export var difficulty = 0
 @export var round = 0
+@export var time_scale = 1.0
 
 @onready var points_text = $CanvasLayer/points
 @onready var lives_text = $CanvasLayer/lives
 
 @export var LEVELS: Array[Resource]
+@export var BEATS: Array[AudioStream]
+
+@export var did_bad = ["hey, WTF", "hey, imma freak", "hey, are you trying?", "hey, fuck you", "hey, (_)_)::::D"]
+@export var did_good = ["hey, goodjob!", "hey, I'm so proud", "hey, promotion for you", "hey, THE COMPANY IS YOURS!"]
 
 @onready var level_container = $LevelContainer
 @onready var timer = $Timer
 
 @onready var animation_player = $LevelArea/AnimationPlayer 
+@onready var pc_sound = $LevelArea/AnimationPlayer/AudioStreamPlayer
 
 #Camera Time
 @onready var main_camera = $LevelArea/MainCamera
@@ -25,6 +30,9 @@ extends Node
 @onready var transition_container = $LevelArea/transitionContainer
 
 @onready var level_data = $LevelArea/Main_area/crtbody/ScreenNode/screenViewport/LevelData
+@onready var boss_message = $LevelArea/Main_area/BossText/LevelBack/SubViewport/RichTextLabel
+
+signal _time_scale_changed(val)
 
 var level_camera 
 var transition_time = 3
@@ -37,20 +45,37 @@ func _ready():
 		main_camera.current = false
 		transition_camera.current = false
 		
+func _time_scale_change():
+	time_scale += .1
+	Engine.time_scale = time_scale
+	_time_scale_changed.emit()
+	
+	boss_message.set_text("GONNA SPEED IT UP")
+	#spectrum.pitch_scale = time_scale
 	
 func _transisition():
+	
+	if points % 5==0 and points != 0: 
+		_time_scale_change()
+	
+	var sfx = load(BEATS[randi() % BEATS.size()].resource_path) 
+	pc_sound.stream = sfx
 
 	points_text.text = str(points)
 	lives_text.text = str(lives)
 	
 	if level_container.get_child_count() > 0:
 		_camera_transition_effect(camera.MAIN)
-		level_container.get_child(0).queue_free()
+		
+		for n in level_container.get_children():
+			level_container.remove_child(n)
+			n.queue_free()
 		
 	else:
 		_change_camera(camera.MAIN)
 	
 	level_data.visible = true
+	
 	animation_player.play("TransistionEffect")
 	await animation_player.animation_finished
 	
@@ -58,13 +83,16 @@ func _transisition():
 	pass
 
 func _failed():
-	
+	$LevelArea/FailAudio.play()
 	lives -= 1
+	points += 1
+	boss_message.set_text(did_bad[randi() % did_bad.size()])
 	_transisition()
 
 func _success():
-	
 	points += 1
+	
+	boss_message.set_text(did_good[randi() % did_good.size()])
 	_transisition()
 
 func _next_level():
@@ -73,7 +101,6 @@ func _next_level():
 	level_container.add_child(level)
 	_camera_transition_effect(camera.LEVEL)
 	
-
 #Param is the camera to transition to 
 func _camera_transition_effect(camera_type):
 

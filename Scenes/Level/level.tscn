@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://buyeook1d50qt"]
+[gd_scene load_steps=19 format=3 uid="uid://buyeook1d50qt"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_18h8i"]
 [ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="2_ockes"]
 [ext_resource type="Texture2D" uid="uid://05fp551khec7" path="res://Sprites/startSprite.png" id="3_cfphs"]
+[ext_resource type="AudioStream" uid="uid://cgyj1t78s4g4j" path="res://Audio/vic_music.ogg" id="4_01aes"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7f554"]
 
@@ -115,6 +116,57 @@ _data = {
 "text_anim": SubResource("Animation_ekn5k")
 }
 
+[sub_resource type="Animation" id="Animation_lfal0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameContainer/Spinner/SpinnerMesh/targetFella/Mes/Sprite3D:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+
+[sub_resource type="Animation" id="Animation_wqjtw"]
+resource_name = "anim_success"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameContainer/Spinner/SpinnerMesh/targetFella/Mes/Sprite3D:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.31864),
+"update": 0,
+"values": [0.01, 0.3]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationSuccess/AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_01aes")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t76uw"]
+_data = {
+"RESET": SubResource("Animation_lfal0"),
+"anim_success": SubResource("Animation_wqjtw")
+}
+
 [node name="Level" type="Node3D"]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -202,6 +254,13 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_ivwv2")
 }
+
+[node name="AnimationSuccess" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t76uw")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationSuccess"]
 
 [connection signal="area_entered" from="GameContainer/PointerStatic" to="GameContainer/Spinner" method="_on_pointer_static_area_entered"]
 [connection signal="area_exited" from="GameContainer/PointerStatic" to="GameContainer/Spinner" method="_on_pointer_static_area_exited"]

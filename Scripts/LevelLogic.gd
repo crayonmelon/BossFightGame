@@ -3,7 +3,7 @@ extends Node3D
 
 @export var level_time = 5
 @export var timeInf = false
-
+@export var time_over_win = false 
 
 @onready var gameManager = get_node("/root/Gamemanager")
 @onready var timer = Timer.new()
@@ -22,7 +22,7 @@ func _ready():
 	await instructions_anim.animation_finished
 	#unpause
 	current_state = STATE.PLAYING
-	timer.timeout.connect(_lose)
+	timer.timeout.connect(_lose if !time_over_win else _win)
 	timer.wait_time = level_time
 	timer.one_shot = true
 	add_child(timer)
@@ -30,13 +30,16 @@ func _ready():
 	if !timeInf:
 		timer.start()
 
-func _process(delta):
-	pass
-
 func _win():
 	
 	if current_state == STATE.PLAYING || current_state == STATE.OPENING:
 		
+		timer.stop()
+		
+		if $AnimationSuccess != null:
+			$AnimationSuccess.play("anim_success")
+			await $AnimationSuccess.animation_finished
+			
 		current_state = STATE.WON
 		gameManager._success()
 

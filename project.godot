@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/test.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Audio/default_bus.tres"
+
 [autoload]
 
 Gamemanager="*res://Scenes/GAMEMANAGER.tscn"
@@ -25,6 +29,8 @@ window/size/viewport_width=240
 window/size/viewport_height=160
 window/size/initial_position=Vector2i(720, 480)
 window/size/initial_screen=1
+mouse_cursor/custom_image="res://Sprites/finger.png"
+mouse_cursor/custom_image_hotspot=Vector2(14, 0)
 window/stretch/mode="viewport"
 
 [input]

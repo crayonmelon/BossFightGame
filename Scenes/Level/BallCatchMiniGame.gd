@@ -3,12 +3,12 @@ extends Node3D
 @export var ballCount = 0
 @export var ballsLeft = 6
 @export var ballsNeeded = 1
-
 #TEXT
 @onready var balls_entered = $HEadPath/PathFollow3D/lady/Sprite3D/SubViewport/BallsEntered
 @onready var balls_left = $BallDropper/PathFollow3D/Node3D/Sprite3D/SubViewport/BallsLeft
 
 @onready var ball_spawner = $BallDropper/PathFollow3D/Node3D
+@onready var click_sound = $BallDropper/PathFollow3D/Node3D/ClickSound
 
 var ball = preload("res://Scenes/ball.tscn")
 
@@ -30,16 +30,14 @@ func _on_area_3d_body_exited(body):
 		ballCount -= 1
 		balls_entered.set_text("[center]" + str(ballCount) + "/" + str(ballsNeeded))
 
-
 func _input(event):
 	if event.is_action_pressed("interact") && ballsLeft >= 0:
-		
+		click_sound.play()
 		_spawn_ball()
 
 func _spawn_ball():
 	
 	ballsLeft-=1
-	
 	balls_left.set_text("[center]" + str(ballsLeft))
 	
 	var b = ball.instantiate()

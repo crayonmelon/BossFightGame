@@ -1,16 +1,26 @@
-[gd_scene load_steps=25 format=3 uid="uid://v6tdhbmxk6vg"]
+[gd_scene load_steps=43 format=3 uid="uid://v6tdhbmxk6vg"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_yimu3"]
 [ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="2_dod1i"]
-[ext_resource type="PackedScene" uid="uid://b2oqq1n0yw4vu" path="res://Scenes/Level/level2.tscn" id="3_ln1av"]
-[ext_resource type="PackedScene" uid="uid://c2ck0uckicp1i" path="res://Scenes/Level/level3.tscn" id="4_vp85a"]
+[ext_resource type="PackedScene" uid="uid://3s8i5xmkkkt0" path="res://Scenes/Level/level2.tscn" id="3_ln1av"]
+[ext_resource type="PackedScene" uid="uid://ksr0ddqna674" path="res://Scenes/Level/level3.tscn" id="4_vp85a"]
+[ext_resource type="AudioStream" uid="uid://cfhhen3ir15sj" path="res://Audio/DrumBeat/GY MISC LP 1.wav" id="5_0jdwg"]
+[ext_resource type="AudioStream" uid="uid://dct3pmsw7y1jl" path="res://Audio/DrumBeat/CONTROL12 83.wav" id="5_5e8p0"]
+[ext_resource type="AudioStream" uid="uid://c86bvthuamlka" path="res://Audio/DrumBeat/DRM CHP4  93.wav" id="5_e0pto"]
+[ext_resource type="PackedScene" uid="uid://bpmebecph1j7l" path="res://Scenes/Level/level4.tscn" id="5_eutbu"]
 [ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="5_ux5le"]
+[ext_resource type="Script" path="res://Scenes/pitch_scale_time_scale.gd" id="6_q2psu"]
 [ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="6_sorei"]
 [ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="7_4mxcu"]
 [ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="7_etc0t"]
+[ext_resource type="AudioStream" uid="uid://dihfo6gvb8664" path="res://Audio/DrumBeat/SOME GRV  97.wav" id="7_ir2vu"]
 [ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="7_qqf66"]
 [ext_resource type="Texture2D" uid="uid://dbd2pofaga4fn" path="res://Sprites/wall.png" id="8_4i7r0"]
 [ext_resource type="Texture2D" uid="uid://cid5q46vesf2h" path="res://Sprites/ground.png" id="9_na0bb"]
+[ext_resource type="Texture2D" uid="uid://b026i1kqj1m3k" path="res://Sprites/email.png" id="12_5imxv"]
+[ext_resource type="Texture2D" uid="uid://crhai0jesrcmv" path="res://Sprites/mrbossemail.png" id="12_e0850"]
+[ext_resource type="AudioStream" uid="uid://bv0y6b6to6ohh" path="res://Audio/DrumBeat/intro_slow.ogg" id="13_ngw22"]
+[ext_resource type="AudioStream" uid="uid://canws0dnwp8xs" path="res://Audio/error/error_1.ogg" id="20_y3f0c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q3bc"]
 sky_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
@@ -88,6 +98,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0.919665, 0.112372)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7hdhh"]
 resource_name = "TransistionEffect"
@@ -99,10 +121,10 @@ tracks/0/path = NodePath("Main_area/crtbody:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1, 3.2, 3.4, 3.5, 3.6, 3.8, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99), Vector3(1, 1, 1), Vector3(1, 1.1, 1.1), Vector3(0.9, 0.99, 0.99)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -111,10 +133,32 @@ tracks/1/path = NodePath("Main_area/crtbody:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 1, 1.1, 1.2, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.2, 2.3, 2.4, 2.6, 2.7, 2.8, 3, 3.1, 3.2, 3.4, 3.5, 3.6, 3.8, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283)]
+"values": [Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283), Vector3(0, 0.938921, 0.112283), Vector3(0, 1.05, 0.112), Vector3(0, 0.938921, 0.112283)]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Main_area/BossText/LevelBack/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("boss_message_intro"),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h27nq"]
@@ -123,8 +167,45 @@ _data = {
 "TransistionEffect": SubResource("Animation_7hdhh")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5rtqf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cy87l"]
 viewport_path = NodePath("LevelArea/Main_area/crtbody/ScreenNode/screenViewport")
+
+[sub_resource type="Animation" id="Animation_8ptrf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_br6wr"]
+resource_name = "_email_loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8sdf"]
+_data = {
+"RESET": SubResource("Animation_8ptrf"),
+"_email_loop": SubResource("Animation_br6wr")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tns6u"]
 render_priority = 0
@@ -148,10 +229,176 @@ shader_parameter/affine_texture_mapping = false
 shader_parameter/alpha_scissor = 1.0
 shader_parameter/albedo = ExtResource("9_na0bb")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ullf4"]
+viewport_path = NodePath("LevelArea/Main_area/BossText/LevelBack/SubViewport")
+
+[sub_resource type="Animation" id="Animation_x1hsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.94689, 0.649104)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../crtbody/ScreenNode/screenViewport/email_image:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../crtbody/ScreenNode/screenViewport/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cs3ot"]
+resource_name = "boss_message_intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 2.5, 3),
+"transitions": PackedFloat32Array(0.2, 1, 0.2, 0.2),
+"update": 0,
+"values": [0.0001, 0.02, 0.02, 0.0001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 2.5, 3),
+"transitions": PackedFloat32Array(0.2, 1, 0.2, 0.2),
+"update": 0,
+"values": [Vector3(0, 0.8, 0.649), Vector3(0, 1.94689, 0.649104), Vector3(0, 1.94689, 0.649104), Vector3(0, 0.8, 0.649)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../crtbody/ScreenNode/screenViewport/email_image:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../crtbody/ScreenNode/screenViewport/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vi3tt"]
+resource_name = "boss_message_outro"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector3(0, 1.94689, 0.649104), Vector3(0, 0.8, 0.649)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:pixel_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [0.02, 0.0001]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0trtr"]
+_data = {
+"RESET": SubResource("Animation_x1hsc"),
+"boss_message_intro": SubResource("Animation_cs3ot"),
+"boss_message_outro": SubResource("Animation_vi3tt")
+}
+
 [node name="GAMEMANAGER" type="Node"]
 script = ExtResource("1_yimu3")
 testing = false
-LEVELS = Array[Resource]([ExtResource("2_dod1i"), ExtResource("3_ln1av"), ExtResource("4_vp85a")])
+LEVELS = Array[Resource]([ExtResource("2_dod1i"), ExtResource("3_ln1av"), ExtResource("4_vp85a"), ExtResource("5_eutbu")])
+BEATS = Array[AudioStream]([ExtResource("5_e0pto"), ExtResource("5_5e8p0"), ExtResource("7_ir2vu"), ExtResource("5_0jdwg")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ice1")
@@ -177,7 +424,7 @@ text = "4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.28273, 0)
 
 [node name="MainCamera" type="Camera3D" parent="LevelArea"]
-transform = Transform3D(1, 0, 0, 0, 0.979099, 0.203385, 0, -0.203385, 0.979099, -0.0571246, 1.74093, 4.60235)
+transform = Transform3D(1, 0, 0, 0, 0.992336, 0.123566, 0, -0.123566, 0.992336, -0.0571246, 1.74093, 4.60235)
 current = true
 fov = 90.0
 
@@ -214,21 +461,27 @@ libraries = {
 "": SubResource("AnimationLibrary_h27nq")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LevelArea/AnimationPlayer"]
+stream = ExtResource("5_5e8p0")
+bus = &"Speakers"
+script = ExtResource("6_q2psu")
+
 [node name="Main_area" type="Node3D" parent="LevelArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477144, 2)
 
 [node name="crtbody" parent="LevelArea/Main_area" instance=ExtResource("5_ux5le")]
-transform = Transform3D(-0.994466, -0.0278521, 0.101295, -0.0309691, 0.99909, -0.0293307, -0.100386, -0.0323054, -0.994424, 0, 0.919665, 0.112372)
+transform = Transform3D(-0.994466, -0.0278524, 0.101295, -0.0309695, 0.99909, -0.0293307, -0.100386, -0.0323055, -0.994424, 0, 0.919665, 0.112372)
 
 [node name="ScreenNode" type="Sprite3D" parent="LevelArea/Main_area/crtbody"]
 transform = Transform3D(-0.89377, -0.0213904, -0.0589266, -0.0232771, 0.996416, 0.0790409, 0.0508803, 0.0801023, -0.998949, -0.0399127, 0.0458182, -0.594806)
 pixel_size = 0.02
-texture = SubResource("ViewportTexture_5rtqf")
+texture = SubResource("ViewportTexture_cy87l")
 
 [node name="screenViewport" type="SubViewport" parent="LevelArea/Main_area/crtbody/ScreenNode"]
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
 size = Vector2i(64, 52)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -239,18 +492,37 @@ scale = Vector2(0.1, 0.105)
 texture = ExtResource("6_sorei")
 offset = Vector2(1, 1)
 
+[node name="email_image" type="Sprite2D" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
+position = Vector2(32, 30)
+scale = Vector2(0.5, 0.5)
+skew = -0.0174533
+texture = ExtResource("12_5imxv")
+hframes = 5
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport/email_image"]
+autoplay = "_email_loop"
+libraries = {
+"": SubResource("AnimationLibrary_a8sdf")
+}
+
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
-offset_right = 40.0
+clip_contents = false
+offset_right = 64.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.98
 bbcode_enabled = true
-text = "[center]WIN"
+text = "[center]EMAIL
+"
 
 [node name="MonitorCam" type="Camera3D" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
 fov = 90.0
 size = 4.0
 
 [node name="wall" type="MeshInstance3D" parent="LevelArea/Main_area"]
-transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 0, -0.808116)
+transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 2, -0.808116)
 material_override = SubResource("ShaderMaterial_tns6u")
 mesh = SubResource("QuadMesh_gd84n")
 
@@ -259,11 +531,53 @@ transform = Transform3D(14.0547, 0, 0, 0, -3.70446e-07, 1.00076, 0, -8.47481, -4
 material_override = SubResource("ShaderMaterial_y71pn")
 mesh = SubResource("QuadMesh_gd84n")
 
+[node name="BossText" type="Node3D" parent="LevelArea/Main_area"]
+
+[node name="LevelBack" type="Sprite3D" parent="LevelArea/Main_area/BossText"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94689, 0.649104)
+pixel_size = 0.0001
+texture = SubResource("ViewportTexture_ullf4")
+
+[node name="SubViewport" type="SubViewport" parent="LevelArea/Main_area/BossText/LevelBack"]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(201, 84)
+size_2d_override_stretch = true
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelArea/Main_area/BossText/LevelBack/SubViewport"]
+position = Vector2(101, 42)
+texture = ExtResource("12_e0850")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/Main_area/BossText/LevelBack/SubViewport"]
+offset_left = 5.0
+offset_top = 32.0
+offset_right = 245.0
+offset_bottom = 72.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "gonna send you some work!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelArea/Main_area/BossText/LevelBack"]
+libraries = {
+"": SubResource("AnimationLibrary_0trtr")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LevelArea/Main_area/BossText/LevelBack/AnimationPlayer"]
+stream = ExtResource("13_ngw22")
+bus = &"Speakers"
+script = ExtResource("6_q2psu")
+
 [node name="desk" parent="LevelArea" instance=ExtResource("7_etc0t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.501048, 2.29015)
 
+[node name="FailAudio" type="AudioStreamPlayer" parent="LevelArea"]
+stream = ExtResource("20_y3f0c")
+
 [node name="speaker" parent="." instance=ExtResource("7_qqf66")]
-transform = Transform3D(0.167611, 0, -0.47107, 0, 0.5, 0, 0.47107, 0, 0.167611, -1.76693, -0.120133, 2.31524)
+transform = Transform3D(0.00528847, 0, -0.499972, 0, 0.5, 0, 0.499972, 0, 0.00528847, -1.8155, -0.120133, 2.31524)
+visible = true
 
 [node name="speaker2" parent="." instance=ExtResource("7_qqf66")]
-transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 1.7968, -0.125133, 2.31865)
+transform = Transform3D(0.00129112, 0, -0.499999, 0, 0.5, 0, 0.499999, 0, 0.00129112, 1.7968, -0.125133, 2.31865)
+visible = true

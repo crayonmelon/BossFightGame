@@ -1,0 +1,322 @@
+[gd_scene load_steps=20 format=3 uid="uid://c7hdf15476xns"]
+
+[ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_ttvfk"]
+[ext_resource type="PackedScene" uid="uid://dj38wa7xejnr6" path="res://Scenes/fish.tscn" id="2_lxflp"]
+[ext_resource type="Script" path="res://Scenes/Level/moveOnLine.gd" id="2_nykut"]
+[ext_resource type="Script" path="res://Scenes/Level/FishMiniGame.gd" id="2_som6p"]
+[ext_resource type="PackedScene" uid="uid://bdnajkwy55luu" path="res://Scenes/fishing_rod.tscn" id="4_bkfn7"]
+[ext_resource type="AudioStream" uid="uid://cvtuo5vq0wgni" path="res://Audio/TheFuniFolder/dum.mp3" id="4_r7au8"]
+[ext_resource type="AudioStream" uid="uid://bb6hndv2ex8ba" path="res://Audio/TheFuniFolder/lift.ogg" id="5_1jmdm"]
+[ext_resource type="AudioStream" uid="uid://cit15t2thliwh" path="res://Audio/TheFuniFolder/waterdrink.ogg" id="8_21jcw"]
+
+[sub_resource type="Curve3D" id="Curve3D_lhwc1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 6.00221, 3.06515, 2.40344, 0, 0, 0, 0, 0, 0, -3.08691, 2.79478, 2.11956, 0, 0, 0, 0, 0, 0, 4.70374, -3.30304, 1.44726, 0, 0, 0, 0, 0, 0, -3.25278, 0.244287, -2.41833, 0, 0, 0, 0, 0, 0, 2.87003, 4.58145, -0.061718, 0, 0, 0, 0, 0, 0, -2.83018, -1.98972, 3.74167, 0, 0, 0, 0, 0, 0, 7.0442, -0.576527, 1.90157, 0, 0, 0, 0, 0, 0, -4.27823, 1.22893, -0.366117, 0, 0, 0, 0, 0, 0, 7.11268, -1.00224, -6.9183, 0, 0, 0, 0, 0, 0, -2.13791, 1.62581, -11.9906, 0, 0, 0, 0, 0, 0, 6.03533, 3.11823, 2.45251),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cgn8t"]
+size = Vector3(1.71863, 2.13998, 4.53485)
+
+[sub_resource type="Animation" id="Animation_yflps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0.349066)]
+}
+
+[sub_resource type="Animation" id="Animation_uxoko"]
+resource_name = "fishin_rod"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(3.73213, 1, 0.247408, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0.349066), Vector3(0, 1.5708, 0.698132), Vector3(0, 1.5708, 0.174533), Vector3(0, 1.5708, 0.349066)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_1jmdm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lcwt3"]
+_data = {
+"RESET": SubResource("Animation_yflps"),
+"fishin_rod": SubResource("Animation_uxoko")
+}
+
+[sub_resource type="Animation" id="Animation_h347q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ekn5k"]
+resource_name = "text_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Instructions:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066, -0.0349066, 0.0349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivwv2"]
+_data = {
+"RESET": SubResource("Animation_h347q"),
+"text_anim": SubResource("Animation_ekn5k")
+}
+
+[sub_resource type="Animation" id="Animation_yb2ka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationSuccess/fish:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationSuccess/fish:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -13)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationSuccess/fish:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5c5dn"]
+resource_name = "anim_success"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationSuccess/fish:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationSuccess/fish:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(1, 4, 0.2, 0.2),
+"update": 0,
+"values": [Vector3(4, -4, -3), Vector3(1, 0, -3), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationSuccess/AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_21jcw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationSuccess/fish:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1),
+"transitions": PackedFloat32Array(2.46229, 0.116629, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.69471, 0), Vector3(0, -0.349066, 0), Vector3(0, -0.349066, 0), Vector3(0, -0.349066, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jqiix"]
+_data = {
+"RESET": SubResource("Animation_yb2ka"),
+"anim_success": SubResource("Animation_5c5dn")
+}
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("1_ttvfk")
+level_time = 6
+
+[node name="GameContainer" type="Node3D" parent="."]
+process_mode = 1
+script = ExtResource("2_som6p")
+
+[node name="Path3D" type="Path3D" parent="GameContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0883939, -0.12499, 0)
+curve = SubResource("Curve3D_lhwc1")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="GameContainer/Path3D"]
+transform = Transform3D(-0.0312177, -0.0297044, -0.999071, 0, 0.999558, -0.0297189, 0.999513, -0.000927756, -0.0312039, 6.00221, 3.06515, 2.40344)
+rotation_mode = 4
+script = ExtResource("2_nykut")
+speed = 10.0
+
+[node name="fish" parent="GameContainer/Path3D/PathFollow3D" instance=ExtResource("2_lxflp")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, -2.4329e-09, 0, 2.4329e-09, 0.5, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GameContainer/Path3D/PathFollow3D/fish"]
+stream = ExtResource("4_r7au8")
+volume_db = -16.98
+max_db = 6.0
+autoplay = true
+
+[node name="StaticBody3D" type="Area3D" parent="GameContainer/Path3D/PathFollow3D/fish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameContainer/Path3D/PathFollow3D/fish/StaticBody3D"]
+transform = Transform3D(1, -2.91038e-10, -3.72529e-09, -1.74623e-10, 1, -7.11225e-10, -7.45058e-09, -8.16726e-09, 1, -0.0131855, -0.0125465, -0.421999)
+shape = SubResource("BoxShape3D_cgn8t")
+
+[node name="fishingRod" parent="GameContainer" instance=ExtResource("4_bkfn7")]
+transform = Transform3D(-1.70084e-07, 6.19055e-08, 0.05, 0.017101, 0.0469846, 0, -0.0469846, 0.017101, -1.81e-07, -0.408079, -0.346314, 4.13924)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameContainer/fishingRod"]
+libraries = {
+"": SubResource("AnimationLibrary_lcwt3")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameContainer/fishingRod"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.49858)
+current = true
+fov = 90.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(120, 12)
+size_flags_horizontal = 3
+size_flags_vertical = 6
+bbcode_enabled = true
+text = "[center]CATCH THE FISH
+
+"
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_ivwv2")
+}
+
+[node name="AnimationSuccess" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jqiix")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationSuccess"]
+
+[node name="fish" parent="AnimationSuccess" instance=ExtResource("2_lxflp")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, -13)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationSuccess/fish"]
+
+[connection signal="input_event" from="GameContainer/Path3D/PathFollow3D/fish/StaticBody3D" to="GameContainer" method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="GameContainer/Path3D/PathFollow3D/fish/StaticBody3D" to="GameContainer" method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="GameContainer/Path3D/PathFollow3D/fish/StaticBody3D" to="GameContainer" method="_on_static_body_3d_mouse_exited"]

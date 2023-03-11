@@ -127,10 +127,37 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1s4p"]
-size = Vector2(120, 120)
+size = Vector2(200, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75qgt"]
 size = Vector2(31.5, 54.5)
+
+[sub_resource type="Animation" id="Animation_tffsq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameContainer/Columbo:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameContainer/Columbo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_t81tn"]
 resource_name = "anim_success"
@@ -169,33 +196,6 @@ tracks/2/path = NodePath("GameContainer/Columbo:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_tffsq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameContainer/Columbo:pixel_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0001]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GameContainer/Columbo:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -300,6 +300,7 @@ position = Vector2(26, 152)
 scale = Vector2(0.05, 0.05)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/iconBody"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_x1s4p")
 
 [node name="icon" type="Sprite2D" parent="CanvasLayer/iconBody"]
@@ -323,4 +324,5 @@ libraries = {
 [connection signal="mouse_exited" from="GameContainer/Maze/maze" to="GameContainer" method="_on_static_body_3d_mouse_exited"]
 [connection signal="mouse_entered" from="GameContainer/Start/StartBody" to="GameContainer" method="_on_start_body_mouse_entered"]
 [connection signal="mouse_exited" from="GameContainer/Start/StartBody" to="GameContainer" method="_on_start_body_mouse_exited"]
+[connection signal="input_event" from="CanvasLayer/iconBody" to="GameContainer" method="_on_icon_body_input_event"]
 [connection signal="area_entered" from="CanvasLayer/Area2D" to="GameContainer" method="_on_area_2d_area_entered"]

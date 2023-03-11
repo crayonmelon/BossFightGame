@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dihfo6gvb8664"
+uid="uid://bhtdpv2klnvuh"
 path="res://.godot/imported/SOME GRV  97.wav-f5b0bc3fbf7193e312c25464487ceaa6.sample"
 
 [deps]
@@ -17,8 +17,8 @@ force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
-edit/normalize=false
-edit/loop_mode=1
+edit/normalize=true
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0

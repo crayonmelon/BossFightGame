@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj38wa7xejnr6"]
+
+[ext_resource type="PackedScene" uid="uid://bkmumgdah15wt" path="res://models/FISH/fish.gltf" id="1_knhro"]
+[ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="2_gvcpw"]
+[ext_resource type="Texture2D" uid="uid://d3w6b71hy4r8e" path="res://models/FISH/fish_texture.png" id="3_raygv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shsad"]
+render_priority = 0
+shader = ExtResource("2_gvcpw")
+shader_parameter/jitter = 0.235
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("3_raygv")
+
+[sub_resource type="Animation" id="Animation_irsi1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fish2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vy6j3"]
+resource_name = "fish_loop"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fish2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.243416, 0.5),
+"transitions": PackedFloat32Array(3, 3, 1),
+"update": 0,
+"values": [Vector3(0, -0.174533, 0), Vector3(0, 0.174533, 0), Vector3(0, -0.174533, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wrqrv"]
+_data = {
+"RESET": SubResource("Animation_irsi1"),
+"fish_loop": SubResource("Animation_vy6j3")
+}
+
+[node name="fish" instance=ExtResource("1_knhro")]
+
+[node name="fish2" parent="." index="0"]
+transform = Transform3D(0.0522229, 0, 0, 0, 0.155336, 0, 0, 0, 0.155336, 0.0204429, -0.10545, 1.94941)
+material_override = SubResource("ShaderMaterial_shsad")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+autoplay = "fish_loop"
+libraries = {
+"": SubResource("AnimationLibrary_wrqrv")
+}

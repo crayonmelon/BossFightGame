@@ -58,9 +58,7 @@ func _transisition():
 	if points % 5==0 and points != 0: 
 		_time_scale_change()
 	
-	var sfx = load(BEATS[randi() % BEATS.size()].resource_path) 
-	pc_sound.stream = sfx
-
+	music_change()
 	points_text.text = str(points)
 	lives_text.text = str(lives)
 	
@@ -80,6 +78,19 @@ func _transisition():
 	await animation_player.animation_finished
 	
 	_next_level()
+	pass
+
+func music_change():
+	pc_sound.stop()
+	var sfx = load(BEATS[randi() % BEATS.size()].resource_path) 
+	pc_sound.stream = sfx
+	pc_sound.play()
+	
+	await pc_sound.finished
+	
+	pc_sound.stop()
+	pc_sound.stream = preload("res://Audio/DrumBeat/beat_loop.wav")
+	pc_sound.play()
 	pass
 
 func _failed():
@@ -159,3 +170,14 @@ func _random_level():
 	past_level = ran_val
 	return ran_val
 	pass
+
+var icon_pointer = preload("res://Sprites/cursors/finger.png")
+var icon_click = preload("res://Sprites/cursors/thumbsUp.png")
+
+func _input(event):
+	if event.is_action_pressed("interact"):
+		Input.set_custom_mouse_cursor(icon_click, 1, Vector2(14,0))
+		
+	if event.is_action_released("interact"):
+		Input.set_custom_mouse_cursor(icon_pointer, 0, Vector2(14,0))
+	

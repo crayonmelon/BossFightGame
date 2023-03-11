@@ -29,7 +29,7 @@ window/size/viewport_width=240
 window/size/viewport_height=160
 window/size/initial_position=Vector2i(720, 480)
 window/size/initial_screen=1
-mouse_cursor/custom_image="res://Sprites/finger.png"
+mouse_cursor/custom_image="res://Sprites/cursors/finger.png"
 mouse_cursor/custom_image_hotspot=Vector2(14, 0)
 window/stretch/mode="viewport"
 

@@ -5,7 +5,7 @@ extends Node3D
 @export var timeInf = false
 @export var time_over_win = false 
 
-@onready var gameManager = get_node("/root/Gamemanager")
+@onready var gameManager = get_node("/root/GAMEMANAGER")
 @onready var timer = Timer.new()
 
 @onready var instructions_anim = $CanvasLayer/AnimationPlayer

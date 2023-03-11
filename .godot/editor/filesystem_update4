@@ -1,12 +1,3 @@
 res://Audio/default_bus.tres
-res://Scenes/GAMEMANAGER.tscn
-res://Scripts/GameManager.gd
+res://Scenes/menus/GAMEMANAGER.tscn
 res://Scenes/test.tscn
-res://Scenes/Level/level.tscn
-res://Scenes/Level/level3.tscn
-res://Scenes/Level/level2.tscn
-res://Scenes/Level/level4.tscn
-res://Scenes/Level/level5.tscn
-res://Scenes/fish.tscn
-res://Scenes/fishing_rod.tscn
-res://Scenes/Level/scary-maze-mini-game.gd

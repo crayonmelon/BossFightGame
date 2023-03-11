@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var angle = Vector3.LEFT
-@onready var gameManager = get_node("/root/Gamemanager")
+@onready var gameManager = get_node("/root/GAMEMANAGER")
 @export var degrees_per_second = 360.0
 
 var spinning = true

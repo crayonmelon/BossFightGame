@@ -1,0 +1,408 @@
+[gd_scene load_steps=29 format=3 uid="uid://bv06hasaul8r1"]
+
+[ext_resource type="Script" path="res://Scenes/speen.gd" id="1_ggwjy"]
+[ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="1_rxs7e"]
+[ext_resource type="Script" path="res://Scenes/menus/MenuController.gd" id="1_xe51e"]
+[ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="2_i00yr"]
+[ext_resource type="Texture2D" uid="uid://b026i1kqj1m3k" path="res://Sprites/email.png" id="3_dvlbs"]
+[ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="4_rsrkd"]
+[ext_resource type="Texture2D" uid="uid://dbd2pofaga4fn" path="res://Sprites/wall.png" id="5_apk7x"]
+[ext_resource type="Texture2D" uid="uid://cid5q46vesf2h" path="res://Sprites/ground.png" id="6_amvur"]
+[ext_resource type="Texture2D" uid="uid://crhai0jesrcmv" path="res://Sprites/mrbossemail.png" id="7_fy0sv"]
+[ext_resource type="Script" path="res://Scenes/pitch_scale_time_scale.gd" id="8_2f13o"]
+[ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="9_ss6m5"]
+[ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="10_746k5"]
+[ext_resource type="Texture2D" uid="uid://bekj7jplawmlo" path="res://Sprites/drums.png" id="12_f2uvb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8khs4"]
+viewport_path = NodePath("Main_area/crtbody/ScreenNode/screenViewport")
+
+[sub_resource type="Animation" id="Animation_8ptrf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_br6wr"]
+resource_name = "_email_loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8sdf"]
+_data = {
+"RESET": SubResource("Animation_8ptrf"),
+"_email_loop": SubResource("Animation_br6wr")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_guwi7"]
+render_priority = 0
+shader = ExtResource("4_rsrkd")
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("5_apk7x")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vkq41"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0m5n8"]
+render_priority = 0
+shader = ExtResource("4_rsrkd")
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("6_amvur")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4og0l"]
+viewport_path = NodePath("LevelArea/Main_area/BossText/LevelBack/SubViewport")
+
+[sub_resource type="Animation" id="Animation_x1hsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.94689, 0.649104)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../crtbody/ScreenNode/screenViewport/email_image:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cs3ot"]
+resource_name = "boss_message_intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 2.5, 3),
+"transitions": PackedFloat32Array(0.2, 1, 0.2, 0.2),
+"update": 0,
+"values": [0.0001, 0.02, 0.02, 0.0001]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 2.5, 3),
+"transitions": PackedFloat32Array(0.2, 1, 0.2, 0.2),
+"update": 0,
+"values": [Vector3(0, 0.8, 0.649), Vector3(0, 1.94689, 0.649104), Vector3(0, 1.94689, 0.649104), Vector3(0, 0.8, 0.649)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../crtbody/ScreenNode/screenViewport/email_image:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vi3tt"]
+resource_name = "boss_message_outro"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector3(0, 1.94689, 0.649104), Vector3(0, 0.8, 0.649)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:pixel_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 0.2),
+"update": 0,
+"values": [0.02, 0.0001]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0trtr"]
+_data = {
+"RESET": SubResource("Animation_x1hsc"),
+"boss_message_intro": SubResource("Animation_cs3ot"),
+"boss_message_outro": SubResource("Animation_vi3tt")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ojg7c"]
+sky_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
+ground_bottom_color = Color(0.337255, 0, 0.184314, 1)
+ground_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
+
+[sub_resource type="Sky" id="Sky_6aeu4"]
+sky_material = SubResource("ProceduralSkyMaterial_ojg7c")
+
+[sub_resource type="Environment" id="Environment_diwp6"]
+background_mode = 2
+sky = SubResource("Sky_6aeu4")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="mainMenu" type="Node3D"]
+script = ExtResource("1_xe51e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0571246, 1.74093, 4.60235)
+current = true
+fov = 90.0
+script = ExtResource("1_ggwjy")
+angle = Vector3(0, 1, 0)
+degrees_per_second = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="STARTGAME" type="Button" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 91.0
+offset_right = -119.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[START GAME]"
+
+[node name="INFINITE MODE" type="Button" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 126.0
+offset_right = -99.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[INFINITE MODE]"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = -126.0
+bbcode_enabled = true
+text = "[center]BOSS FIGHT GAME"
+
+[node name="Main_area" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477144, 2)
+
+[node name="crtbody" parent="Main_area" instance=ExtResource("1_rxs7e")]
+transform = Transform3D(-0.994466, -0.0278524, 0.101295, -0.0309695, 0.99909, -0.0293307, -0.100386, -0.0323055, -0.994424, 0, 0.919665, 0.112372)
+
+[node name="ScreenNode" type="Sprite3D" parent="Main_area/crtbody"]
+transform = Transform3D(-0.89377, -0.0213904, -0.0589266, -0.0232771, 0.996416, 0.0790409, 0.0508803, 0.0801023, -0.998949, -0.0399127, 0.0458183, -0.594806)
+pixel_size = 0.02
+texture = SubResource("ViewportTexture_8khs4")
+
+[node name="screenViewport" type="SubViewport" parent="Main_area/crtbody/ScreenNode"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(64, 52)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="LevelData" type="Sprite2D" parent="Main_area/crtbody/ScreenNode/screenViewport"]
+position = Vector2(32, 26)
+scale = Vector2(0.1, 0.105)
+texture = ExtResource("2_i00yr")
+offset = Vector2(1, 1)
+
+[node name="email_image" type="Sprite2D" parent="Main_area/crtbody/ScreenNode/screenViewport"]
+position = Vector2(32, 30)
+scale = Vector2(0.5, 0.5)
+skew = -0.0174533
+texture = ExtResource("3_dvlbs")
+hframes = 5
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main_area/crtbody/ScreenNode/screenViewport/email_image"]
+autoplay = "_email_loop"
+libraries = {
+"": SubResource("AnimationLibrary_a8sdf")
+}
+
+[node name="Walls" type="Node3D" parent="Main_area"]
+
+[node name="wall" type="MeshInstance3D" parent="Main_area/Walls"]
+transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 2, -0.808116)
+material_override = SubResource("ShaderMaterial_guwi7")
+mesh = SubResource("QuadMesh_vkq41")
+skeleton = NodePath("../..")
+
+[node name="wall2" type="MeshInstance3D" parent="Main_area/Walls"]
+transform = Transform3D(-6.71494e-07, 0, 1, 0, 8.46834, 0, -15.362, 0, -4.37114e-08, -7, 2, 2.19188)
+material_override = SubResource("ShaderMaterial_guwi7")
+mesh = SubResource("QuadMesh_vkq41")
+skeleton = NodePath("../..")
+
+[node name="wall3" type="MeshInstance3D" parent="Main_area/Walls"]
+transform = Transform3D(-15.362, 0, -8.74228e-08, 0, 8.46834, 0, 1.34299e-06, 0, -1, 0, 2, 9.19188)
+material_override = SubResource("ShaderMaterial_guwi7")
+mesh = SubResource("QuadMesh_vkq41")
+skeleton = NodePath("../..")
+
+[node name="wall4" type="MeshInstance3D" parent="Main_area/Walls"]
+transform = Transform3D(2.01448e-06, 0, -1, 0, 8.46834, 0, 15.362, 0, 1.31134e-07, 7, 2, 3.19188)
+material_override = SubResource("ShaderMaterial_guwi7")
+mesh = SubResource("QuadMesh_vkq41")
+skeleton = NodePath("../..")
+
+[node name="ground" type="MeshInstance3D" parent="Main_area"]
+transform = Transform3D(14, 0, 0, 0, -6.11959e-07, 14, 0, -14, -6.11959e-07, 0, -1.51893, 3.21541)
+material_override = SubResource("ShaderMaterial_0m5n8")
+mesh = SubResource("QuadMesh_vkq41")
+
+[node name="BossText" type="Node3D" parent="Main_area"]
+
+[node name="LevelBack" type="Sprite3D" parent="Main_area/BossText"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94689, 0.649104)
+pixel_size = 0.0001
+texture = SubResource("ViewportTexture_4og0l")
+
+[node name="SubViewport" type="SubViewport" parent="Main_area/BossText/LevelBack"]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(201, 84)
+size_2d_override_stretch = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Main_area/BossText/LevelBack/SubViewport"]
+position = Vector2(101, 42)
+texture = ExtResource("7_fy0sv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Main_area/BossText/LevelBack/SubViewport"]
+offset_left = 5.0
+offset_top = 32.0
+offset_right = 245.0
+offset_bottom = 72.0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "gonna send you some work!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main_area/BossText/LevelBack"]
+libraries = {
+"": SubResource("AnimationLibrary_0trtr")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main_area/BossText/LevelBack/AnimationPlayer"]
+bus = &"Speakers"
+script = ExtResource("8_2f13o")
+
+[node name="speaker" parent="Main_area" instance=ExtResource("9_ss6m5")]
+transform = Transform3D(0.00528847, 0, -0.499972, 0, 0.5, 0, 0.499972, 0, 0.00528847, -1.8155, 0.685453, 0.31524)
+visible = true
+
+[node name="speaker2" parent="Main_area" instance=ExtResource("9_ss6m5")]
+transform = Transform3D(0.00129112, 0, -0.499999, 0, 0.5, 0, 0.499999, 0, 0.00129112, 1.7968, 0.680453, 0.31865)
+visible = true
+
+[node name="desk" parent="Main_area" instance=ExtResource("10_746k5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.023904, 0.29015)
+
+[node name="drums" type="Sprite3D" parent="Main_area"]
+transform = Transform3D(-2.82843, 0, 2.82843, 0, 4, 0, -2.82843, 0, -2.82843, -3.91444, 0.561557, 6.09736)
+texture = ExtResource("12_f2uvb")
+hframes = 3
+vframes = 3
+frame = 7
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_diwp6")
+
+[connection signal="pressed" from="CanvasLayer/STARTGAME" to="." method="_on_startgame_pressed"]

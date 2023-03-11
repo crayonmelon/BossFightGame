@@ -300,7 +300,6 @@ position = Vector2(26, 152)
 scale = Vector2(0.05, 0.05)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/iconBody"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_x1s4p")
 
 [node name="icon" type="Sprite2D" parent="CanvasLayer/iconBody"]

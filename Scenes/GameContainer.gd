@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var gameManager = get_node("/root/Gamemanager")
+@onready var gameManager = get_node("/root/GAMEMANAGER")
 
 func _ready():
 

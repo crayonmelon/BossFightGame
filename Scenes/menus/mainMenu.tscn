@@ -269,7 +269,7 @@ grow_vertical = 2
 text = "[INFINITE MODE]"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 8.0

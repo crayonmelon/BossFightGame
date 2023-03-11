@@ -3,9 +3,9 @@
 COLUMBO.png::CompressedTexture2D::5070069810820375165::1678439983::1678440216::1::::<><>::
 README.md::TextFile::-1::1677919978::0::1::::<><>::
 success_2.ogg::AudioStreamOggVorbis::1329528280091601104::1678307630::1678307576::1::::<><>::
-::res://Audio/::1678554889
+::res://Audio/::1678568612
 BOMP.mp3::AudioStreamMP3::630016120420352435::1678308182::1678308198::1::::<><>::
-default_bus.tres::AudioBusLayout::4137692713736195937::1678554889::0::1::::<><>::
+default_bus.tres::AudioBusLayout::4137692713736195937::1678568612::0::1::::<><>::
 impact.ogg::AudioStreamOggVorbis::2184529385019531793::1678325434::1678325434::1::::<><>::
 StageSelect.mp3::AudioStreamMP3::1309233343006088607::1678323337::1678323337::1::::<><>::
 vic_music.ogg::AudioStreamOggVorbis::5244113427790221347::1678383923::1678383924::1::::<><>::
@@ -79,7 +79,7 @@ woman.gltf::PackedScene::1182395195489160185::1678290896::1678290901::1::::<><>:
 ::res://models/Speaker/::1678314683
 speaker.gltf::PackedScene::5822309739713264038::1678155613::1678155874::1::::<><>::
 speakeruv.png::CompressedTexture2D::5217997804601463719::1678314681::1678314683::1::::<><>::
-::res://Scenes/::1678566479
+::res://Scenes/::1678569029
 antique_roll_top_desk.tscn::PackedScene::5848901180310285615::1678441641::0::1::::<><>::uid://d2tlqj8wmsxht
 AudioWiggle.gd::GDScript::-1::1678309697::0::1::::<>MeshInstance3D<>::
 ball.tscn::PackedScene::3339676612436369246::1678441641::0::1::::<><>::res://Scenes/RandomColour.gd
@@ -97,7 +97,7 @@ pitch_scale_time_scale.gd::GDScript::-1::1678556011::0::1::::<>AudioStreamPlayer
 RandomColour.gd::GDScript::-1::1678372423::0::1::::<>MeshInstance3D<>::
 speaker.tscn::PackedScene::2586705581063069217::1678441641::0::1::::<><>::uid://co7muc6l3oe7g<>res://Shader/PSX.gdshader<>uid://cglvwqw6h66c6<>res://Scenes/AudioWiggle.gd
 speen.gd::GDScript::-1::1678560254::0::1::::<>Node3D<>::
-test.tscn::PackedScene::3405096705245056433::1678566478::0::1::::<><>::
+test.tscn::PackedScene::3405096705245056433::1678569029::0::1::::<><>::
 ::res://Scenes/Level/::1678566478
 BallCatchMiniGame.gd::GDScript::-1::1678321850::0::1::::<>Node3D<>::
 ballSpawner.gd::GDScript::-1::1678291568::0::1::::<>Node3D<>::
@@ -113,8 +113,8 @@ PlayerJumpMiniGame.gd::GDScript::-1::1678392595::0::1::::<>Node3D<>::
 scary-maze-mini-game.gd::GDScript::-1::1678477234::0::1::::<>Node3D<>::
 Spinner.gd::GDScript::-1::1678556011::0::1::::<>Node3D<>::
 SpinnerGameLogic.gd::GDScript::-1::1678150510::0::1::::<>Node3D<>::
-::res://Scenes/menus/::1678568593
-GAMEMANAGER.tscn::PackedScene::1539120776803456460::1678566478::0::1::::<><>::res://Scripts/GameManager.gd<>uid://buyeook1d50qt<>uid://3s8i5xmkkkt0<>uid://ksr0ddqna674<>uid://bpmebecph1j7l<>uid://ccsums78csmik<>uid://bejgq5stm0gf4<>res://Scenes/pitch_scale_time_scale.gd<>uid://b2huxcy7thdgf<>uid://c7hdf15476xns<>res://Shader/PSX.gdshader<>uid://b25hnuu7emqan<>uid://bc4awsopxk7s4<>uid://dbd2pofaga4fn<>uid://bv1t65hhln33i<>uid://cid5q46vesf2h<>uid://corqty0hvpuag<>uid://ccpfexx76g16b<>uid://dqcm6fxg4w07h<>uid://b026i1kqj1m3k<>uid://bboeynsh0pwd4<>uid://crhai0jesrcmv<>uid://cusxppw06b8p<>uid://bwy60ff6y0qj3<>uid://dqqs2vv4qkxm1<>uid://canws0dnwp8xs
+::res://Scenes/menus/::1678569180
+GAMEMANAGER.tscn::PackedScene::1539120776803456460::1678569180::0::1::::<><>::res://Scripts/GameManager.gd<>uid://buyeook1d50qt<>uid://3s8i5xmkkkt0<>uid://ksr0ddqna674<>uid://bpmebecph1j7l<>uid://ccsums78csmik<>uid://bejgq5stm0gf4<>res://Scenes/pitch_scale_time_scale.gd<>uid://b2huxcy7thdgf<>uid://c7hdf15476xns<>res://Shader/PSX.gdshader<>uid://b25hnuu7emqan<>uid://bc4awsopxk7s4<>uid://dbd2pofaga4fn<>uid://bv1t65hhln33i<>uid://cid5q46vesf2h<>uid://corqty0hvpuag<>uid://ccpfexx76g16b<>uid://dqcm6fxg4w07h<>uid://b026i1kqj1m3k<>uid://bboeynsh0pwd4<>uid://crhai0jesrcmv<>uid://cusxppw06b8p<>uid://bwy60ff6y0qj3<>uid://dqqs2vv4qkxm1<>uid://canws0dnwp8xs
 IntroController.gd::GDScript::-1::1678568583::0::1::::<>Node<>::
 mainMenu.tscn::PackedScene::3913890599110047480::1678566478::0::1::::<><>::res://Scenes/speen.gd<>uid://ccsums78csmik<>res://Scenes/menus/MenuController.gd<>uid://b2huxcy7thdgf<>uid://b026i1kqj1m3k<>res://Shader/PSX.gdshader<>uid://dbd2pofaga4fn<>uid://cid5q46vesf2h<>uid://crhai0jesrcmv<>res://Scenes/pitch_scale_time_scale.gd<>uid://bc4awsopxk7s4<>uid://b25hnuu7emqan<>uid://bekj7jplawmlo
 MenuController.gd::GDScript::-1::1678561992::0::1::::<>Node3D<>::
@@ -126,13 +126,14 @@ GameManager.gd::GDScript::-1::1678477001::0::1::::GAMEMANAGER<>Node<>::
 LevelLogic.gd::GDScript::-1::1678556011::0::1::::Level<>Node3D<>::
 ::res://Shader/::1678223907
 PSX.gdshader::Shader::-1::1678223907::0::1::::<><>::
-::res://Sprites/::1678561550
+::res://Sprites/::1678569193
 bg.png::CompressedTexture2D::6603271038509269681::1678134586::1678134587::1::::<><>::
 bgScreen.png::CompressedTexture2D::7726287862078899099::1678134722::1678134763::1::::<><>::
 bg_new.png::CompressedTexture2D::4297225662915144773::1678135388::1678135388::1::::<><>::
 carSpin.png::CompressedTexture2D::1761618813219439570::1678320271::1678320285::1::::<><>::
 drums.png::CompressedTexture2D::2688423930508569348::1678557395::1678557413::1::::<><>::
 email.png::CompressedTexture2D::4198777868925702610::1678390665::1678390665::1::::<><>::
+GeorgeSprite.png::CompressedTexture2D::7285850930940426770::1678569193::1678569193::1::::<><>::
 ground.png::CompressedTexture2D::5342396904264407265::1678215101::1678215122::1::::<><>::
 icon.svg::CompressedTexture2D::653709243733536016::1677681004::1678320736::1::::<><>::
 maze.glb::PackedScene::7458520028474514624::1678409365::1678409366::1::::<><>::

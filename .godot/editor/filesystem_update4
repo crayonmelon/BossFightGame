@@ -10,7 +10,9 @@ res://Scenes/fish.tscn
 res://Scenes/fishing_rod.tscn
 res://Scenes/menus/mainMenu.tscn
 res://Scenes/menus/transition.tscn
-res://Scenes/lady.tscn
 res://Scenes/menus/IntroController.gd
+res://Scripts/GameManager.gd
 res://Scenes/menus/SceneTransition.gd
-res://Scenes/menus/transition.gdshader
+res://Scenes/menus/Intro_params.gd
+res://Scenes/menus/IntroHandler.gd
+res://Scenes/menus/MenuController.gd

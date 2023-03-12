@@ -39,7 +39,7 @@ var transition_time = 3
 
 func _ready():
 	if !testing:
-		_transisition()
+		_first_time()
 		
 	else:
 		main_camera.current = false
@@ -52,7 +52,12 @@ func _time_scale_change():
 	
 	boss_message.set_text("GONNA SPEED IT UP")
 	#spectrum.pitch_scale = time_scale
+
+func _first_time():
 	
+	
+	_transisition()
+
 func _transisition():
 	
 	if points % 5==0 and points != 0: 

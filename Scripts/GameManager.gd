@@ -11,12 +11,14 @@ extends Node
 
 @onready var points_text = $CanvasLayer/points
 @onready var lives_text = $CanvasLayer/lives
+ 
+@export var final_level : Resource
 
 @export var LEVELS: Array[Resource]
 @export var BEATS: Array[AudioStream]
 
-@export var did_bad = ["hey, WTF", "hey, imma freak", "hey, are you trying?", "hey, fuck you", "hey, (_)_)::::D"]
-@export var did_good = ["hey, goodjob!", "hey, I'm so proud", "hey, promotion for you", "hey, THE COMPANY IS YOURS!"]
+@export var did_bad = ["hey, WTF", "hey, imma freak", "hey, are you trying?", "hey, fuck you", "hey, (_)_)::::D", "Lol, lmao even"]
+@export var did_good = ["hey, goodjob!", "hey, I'm so proud", "hey, promotion for you", "Wowzers, awooga"]
 
 @onready var level_container = $LevelContainer
 @onready var timer = $Timer
@@ -54,17 +56,14 @@ func _time_scale_change():
 	#spectrum.pitch_scale = time_scale
 
 func _first_time():
-	
-	
 	_transisition()
 
 func _transisition():
-	
 	if points % 5==0 and points != 0: 
 		_time_scale_change()
 	
 	music_change()
-	points_text.text = str(points)
+	points_text.text = str(points)+ ("/"+str(Globals.ENDING_POINTS_NEEDED) if Globals.CURRENT_GAMEMODE == Globals.GAMEMODES.STORY else "")
 	lives_text.text = str(lives)
 	
 	if level_container.get_child_count() > 0:
@@ -78,11 +77,20 @@ func _transisition():
 		_change_camera(camera.MAIN)
 	
 	level_data.visible = true
+	var level = LEVELS[_random_level()].instantiate()
+	
+	#FINAL LEVEL
+	if points >= Globals.ENDING_POINTS_NEEDED && Globals.CURRENT_GAMEMODE == Globals.GAMEMODES.STORY:
+		level = final_level.instantiate()
 	
 	animation_player.play("TransistionEffect")
 	await animation_player.animation_finished
 	
-	_next_level()
+	$WorldEnvironment._set_color()
+	
+	level_camera = level.get_node("Camera3D")
+	level_container.add_child(level)
+	_camera_transition_effect(camera.LEVEL)
 	pass
 
 func music_change():
@@ -101,15 +109,20 @@ func music_change():
 func _failed():
 	$LevelArea/FailAudio.play()
 	lives -= 1
+	_check_if_lost()
 	points += 1
 	boss_message.set_text(did_bad[randi() % did_bad.size()])
 	_transisition()
 
 func _success():
 	points += 1
-	
+	Globals.CURRENT_SCORE = points
 	boss_message.set_text(did_good[randi() % did_good.size()])
 	_transisition()
+
+func _check_if_lost():
+	if lives <=0:
+		Transition.lost_transition(self)
 
 func _next_level():
 	var level = LEVELS[_random_level()].instantiate()
@@ -161,12 +174,15 @@ func _change_camera(camera_type):
 	elif camera_type == camera.TRANS:
 		transition_camera.current = true
 	else:
-		print("SOMETHING HAS FUCKED UP WITH THE CAMERAS")
 		main_camera.current = true
 		
 var past_level = -1
 
 func _random_level():
+	
+	if points == 0:
+		return 0
+	
 	var ran_val = past_level
 	while (ran_val == past_level) : 
 		ran_val = randi() % LEVELS.size()
@@ -175,14 +191,3 @@ func _random_level():
 	past_level = ran_val
 	return ran_val
 	pass
-
-var icon_pointer = preload("res://Sprites/cursors/finger.png")
-var icon_click = preload("res://Sprites/cursors/thumbsUp.png")
-
-func _input(event):
-	if event.is_action_pressed("interact"):
-		Input.set_custom_mouse_cursor(icon_click, 1, Vector2(14,0))
-		
-	if event.is_action_released("interact"):
-		Input.set_custom_mouse_cursor(icon_pointer, 0, Vector2(14,0))
-	

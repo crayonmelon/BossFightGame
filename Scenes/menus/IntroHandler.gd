@@ -28,6 +28,6 @@ func _input(event):
 		_anin_play()
 
 func _loadgame(): 
-	
+	$AudioStreamPlayer.stop()
 	$AnimationPlayer.play("intro_anim_final")
 	get_tree().change_scene_to_file("res://Scenes/menus/GAMEMANAGER.tscn")

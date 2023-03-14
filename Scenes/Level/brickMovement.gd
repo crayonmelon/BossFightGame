@@ -1,0 +1,2 @@
+extends PathFollow3D
+

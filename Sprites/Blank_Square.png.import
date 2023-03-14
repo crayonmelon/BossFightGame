@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceh8krioi3g3n"
-path.s3tc="res://.godot/imported/COLUMBO.png-dd5ef8e4ad8e6a5734e5f2eaf7c57509.s3tc.ctex"
+uid="uid://c2jigpaaktwcn"
+path.s3tc="res://.godot/imported/Blank_Square.png-0095341c073e91bdbd3a5ce94afa560c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://COLUMBO.png"
-dest_files=["res://.godot/imported/COLUMBO.png-dd5ef8e4ad8e6a5734e5f2eaf7c57509.s3tc.ctex"]
+source_file="res://Sprites/Blank_Square.png"
+dest_files=["res://.godot/imported/Blank_Square.png-0095341c073e91bdbd3a5ce94afa560c.s3tc.ctex"]
 
 [params]
 

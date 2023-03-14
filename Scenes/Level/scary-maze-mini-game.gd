@@ -24,11 +24,9 @@ func _process(delta):
 
 func _on_static_body_3d_mouse_entered():
 	mouse_entered_maze = true
-	print("entered")
-
+	
 func _on_static_body_3d_mouse_exited():
 	mouse_entered_maze = false
-	print("exited")
 
 	if can_follow: 
 		can_follow = false
@@ -36,6 +34,7 @@ func _on_static_body_3d_mouse_exited():
 		audio_stream_player.play()
 
 func _on_icon_body_input_event(viewport, event, shape_idx):
+	
 	if event.is_action_pressed("interact"): 
 		can_follow = true
 		print("clicked")	
@@ -46,3 +45,17 @@ func _on_icon_body_input_event(viewport, event, shape_idx):
 
 func _on_area_2d_area_entered(area):
 	$".."._win()
+
+
+func _on_icon_body_mouse_entered():
+	MouseCursorController.highlight()
+	print("entered")
+	pass # Replace with function body.
+
+
+func _on_icon_body_mouse_exited():
+	MouseCursorController.selected()
+	print("exiteed")
+	
+	pass # Replace with function body.
+

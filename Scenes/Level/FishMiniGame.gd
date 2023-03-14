@@ -15,3 +15,10 @@ func _fish_caught():
 	caught = true
 	$Path3D/PathFollow3D/fish.queue_free()
 	$".."._win()
+
+func _on_static_body_3d_mouse_entered():
+	MouseCursorController.highlight()
+
+func _on_static_body_3d_mouse_exited():
+	MouseCursorController.selected()
+

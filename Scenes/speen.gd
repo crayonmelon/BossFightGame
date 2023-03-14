@@ -4,7 +4,6 @@ extends Node3D
 
 @export var randomiser = false
 
-
 func _ready():
 	if randomiser:
 		degrees_per_second = degrees_per_second *  (-1 if randi() % 2 == 0 else 1)

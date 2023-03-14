@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c7hdf15476xns"]
+[gd_scene load_steps=22 format=3 uid="uid://c7hdf15476xns"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_ttvfk"]
 [ext_resource type="PackedScene" uid="uid://dj38wa7xejnr6" path="res://Scenes/fish.tscn" id="2_lxflp"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://cvtuo5vq0wgni" path="res://Audio/TheFuniFolder/dum.mp3" id="4_r7au8"]
 [ext_resource type="AudioStream" uid="uid://bb6hndv2ex8ba" path="res://Audio/TheFuniFolder/lift.ogg" id="5_1jmdm"]
 [ext_resource type="AudioStream" uid="uid://cit15t2thliwh" path="res://Audio/TheFuniFolder/waterdrink.ogg" id="8_21jcw"]
+[ext_resource type="Texture2D" uid="uid://bsk5mxv25dcya" path="res://Sprites/hook.png" id="8_j0bml"]
+[ext_resource type="Script" path="res://Scenes/follow_mouse.gd" id="9_g264e"]
 
 [sub_resource type="Curve3D" id="Curve3D_lhwc1"]
 _data = {
@@ -293,6 +295,7 @@ grow_vertical = 2
 pivot_offset = Vector2(120, 12)
 size_flags_horizontal = 3
 size_flags_vertical = 6
+mouse_filter = 2
 bbcode_enabled = true
 text = "[center]CATCH THE FISH
 
@@ -303,6 +306,12 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_ivwv2")
 }
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(66, 70)
+scale = Vector2(0.109375, 0.0955882)
+texture = ExtResource("8_j0bml")
+script = ExtResource("9_g264e")
 
 [node name="AnimationSuccess" type="AnimationPlayer" parent="."]
 libraries = {

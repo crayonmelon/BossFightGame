@@ -1,18 +1,26 @@
-[gd_scene load_steps=19 format=3 uid="uid://buyeook1d50qt"]
+[gd_scene load_steps=20 format=3 uid="uid://buyeook1d50qt"]
 
 [ext_resource type="Script" path="res://Scripts/LevelLogic.gd" id="1_18h8i"]
 [ext_resource type="Script" path="res://Scenes/Level/Spinner.gd" id="2_ockes"]
 [ext_resource type="Texture2D" uid="uid://05fp551khec7" path="res://Sprites/startSprite.png" id="3_cfphs"]
 [ext_resource type="AudioStream" uid="uid://cgyj1t78s4g4j" path="res://Audio/vic_music.ogg" id="4_01aes"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_7f554"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1i6m"]
+shading_mode = 0
+albedo_color = Color(0.568627, 0.827451, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3575"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_7f554"]
+material = SubResource("StandardMaterial3D_i1i6m")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ip1cv"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.0146517, 0.470697, 0.470697, 0.0735213, 0.352957, 0.47061, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.0146517, 0.470697, -0.470697, 0.5, -0.5, 0.5, -0.0146517, 0.470697, 0.470697, 0.0146517, 0.470697, -0.470697)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5jw8"]
+shading_mode = 0
+albedo_color = Color(0.831373, 0.776471, 0, 1)
+
 [sub_resource type="PrismMesh" id="PrismMesh_ny15e"]
+material = SubResource("StandardMaterial3D_t5jw8")
 
 [sub_resource type="Animation" id="Animation_bkf3a"]
 length = 0.001
@@ -174,6 +182,7 @@ script = ExtResource("1_18h8i")
 
 [node name="GameContainer" type="Node3D" parent="."]
 process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.79829)
 
 [node name="Spinner" type="Node3D" parent="GameContainer"]
 transform = Transform3D(0.5, 3.78552e-08, -0.866025, 0.866025, -2.18557e-08, 0.5, 0, -1, -4.37114e-08, 0, 0, 2.64383)
@@ -184,7 +193,6 @@ angle = Vector3(0, 0, 1)
 transform = Transform3D(1.15487, 0, 0, 0, 0.0418184, 2.59348e-13, 0, 0, 1.13086, 0, 0, 0)
 mesh = SubResource("CylinderMesh_7f554")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_e3575")
 
 [node name="targetFella" type="Area3D" parent="GameContainer/Spinner/SpinnerMesh"]
 transform = Transform3D(-7.45058e-09, -0.217, 9.48537e-09, 5.68434e-14, -9.48536e-09, -0.217, 0.217, -2.23517e-08, -2.77556e-16, 0.2172, -1.41837, 1.26085e-08)
@@ -194,7 +202,7 @@ transform = Transform3D(2.311, 5.961e-08, -8.57422e-07, -5.961e-08, 2.311, 2.192
 shape = SubResource("ConvexPolygonShape3D_ip1cv")
 
 [node name="Mes" type="MeshInstance3D" parent="GameContainer/Spinner/SpinnerMesh/targetFella"]
-transform = Transform3D(2.31079, -4.26326e-14, -8.55217e-07, 7.46183e-14, 2.31079, 2.18645e-08, 8.57344e-07, -2.19188e-08, 2.30506, 0, 0, 0)
+transform = Transform3D(2.39485, 4.76837e-07, -8.55217e-07, -1.19209e-07, 2.59999, 2.18645e-08, 8.88529e-07, -2.46629e-08, 2.30506, 0, 0, 0)
 mesh = SubResource("PrismMesh_ny15e")
 skeleton = NodePath("../../../..")
 
@@ -245,7 +253,7 @@ pivot_offset = Vector2(120, 12)
 size_flags_horizontal = 3
 size_flags_vertical = 6
 bbcode_enabled = true
-text = "[center]Do the Thing
+text = "[center]Stop the Wheel
 "
 scroll_active = false
 

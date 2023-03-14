@@ -1,18 +1,60 @@
-[gd_scene load_steps=29 format=3 uid="uid://bv06hasaul8r1"]
+[gd_scene load_steps=36 format=3 uid="uid://bv06hasaul8r1"]
 
 [ext_resource type="Script" path="res://Scenes/speen.gd" id="1_ggwjy"]
 [ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="1_rxs7e"]
 [ext_resource type="Script" path="res://Scenes/menus/MenuController.gd" id="1_xe51e"]
 [ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="2_i00yr"]
+[ext_resource type="PackedScene" uid="uid://bw0p77ileg28w" path="res://Scenes/Important/shader_cache.tscn" id="3_1vdjv"]
 [ext_resource type="Texture2D" uid="uid://b026i1kqj1m3k" path="res://Sprites/email.png" id="3_dvlbs"]
+[ext_resource type="Script" path="res://Scenes/menus/HardModeDetect.gd" id="3_o4mjp"]
 [ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="4_rsrkd"]
+[ext_resource type="Script" path="res://Scenes/menus/highScore.gd" id="4_ykp2x"]
 [ext_resource type="Texture2D" uid="uid://dbd2pofaga4fn" path="res://Sprites/wall.png" id="5_apk7x"]
 [ext_resource type="Texture2D" uid="uid://cid5q46vesf2h" path="res://Sprites/ground.png" id="6_amvur"]
 [ext_resource type="Texture2D" uid="uid://crhai0jesrcmv" path="res://Sprites/mrbossemail.png" id="7_fy0sv"]
 [ext_resource type="Script" path="res://Scenes/pitch_scale_time_scale.gd" id="8_2f13o"]
 [ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="9_ss6m5"]
 [ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="10_746k5"]
+[ext_resource type="Texture2D" uid="uid://b4u2om7uaknqu" path="res://Sprites/Opening/boss_spritesheet.png" id="10_pf1nj"]
 [ext_resource type="Texture2D" uid="uid://bekj7jplawmlo" path="res://Sprites/drums.png" id="12_f2uvb"]
+
+[sub_resource type="Animation" id="Animation_a7i1w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(117, 31)]
+}
+
+[sub_resource type="Animation" id="Animation_xwkgq"]
+resource_name = "shake"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0505943, 0.1, 0.153236, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(117, 31), Vector2(118, 30), Vector2(117, 31), Vector2(116, 29), Vector2(117, 31)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_af662"]
+_data = {
+"RESET": SubResource("Animation_a7i1w"),
+"shake": SubResource("Animation_xwkgq")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8khs4"]
 viewport_path = NodePath("Main_area/crtbody/ScreenNode/screenViewport")
@@ -76,8 +118,8 @@ shader_parameter/affine_texture_mapping = false
 shader_parameter/alpha_scissor = 1.0
 shader_parameter/albedo = ExtResource("6_amvur")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4og0l"]
-viewport_path = NodePath("LevelArea/Main_area/BossText/LevelBack/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_wb7v1"]
+viewport_path = NodePath("Main_area/BossText/LevelBack/SubViewport")
 
 [sub_resource type="Animation" id="Animation_x1hsc"]
 length = 0.001
@@ -256,6 +298,26 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "[START GAME]"
 
+[node name="HARDMODE" type="Button" parent="CanvasLayer"]
+modulate = Color(0.772549, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 55.0
+offset_right = 121.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[HARDMODE]"
+script = ExtResource("3_o4mjp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HARDMODE"]
+autoplay = "shake"
+libraries = {
+"": SubResource("AnimationLibrary_af662")
+}
+
 [node name="INFINITE MODE" type="Button" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -275,7 +337,19 @@ anchor_bottom = 1.0
 offset_top = 8.0
 offset_bottom = -126.0
 bbcode_enabled = true
-text = "[center]BOSS FIGHT GAME"
+text = "[center]BOSS RUSH"
+
+[node name="highScore" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.612
+anchor_top = 0.806
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.119995
+offset_top = 0.0399933
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_ykp2x")
 
 [node name="Main_area" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477144, 2)
@@ -353,7 +427,7 @@ mesh = SubResource("QuadMesh_vkq41")
 [node name="LevelBack" type="Sprite3D" parent="Main_area/BossText"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.94689, 0.649104)
 pixel_size = 0.0001
-texture = SubResource("ViewportTexture_4og0l")
+texture = SubResource("ViewportTexture_wb7v1")
 
 [node name="SubViewport" type="SubViewport" parent="Main_area/BossText/LevelBack"]
 transparent_bg = true
@@ -364,6 +438,14 @@ size_2d_override_stretch = true
 [node name="Sprite2D" type="Sprite2D" parent="Main_area/BossText/LevelBack/SubViewport"]
 position = Vector2(101, 42)
 texture = ExtResource("7_fy0sv")
+
+[node name="Profile" type="Sprite2D" parent="Main_area/BossText/LevelBack/SubViewport/Sprite2D"]
+position = Vector2(-101, -42)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_pf1nj")
+offset = Vector2(50, 50)
+flip_h = true
+vframes = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main_area/BossText/LevelBack/SubViewport"]
 offset_left = 5.0
@@ -396,7 +478,7 @@ visible = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.023904, 0.29015)
 
 [node name="drums" type="Sprite3D" parent="Main_area"]
-transform = Transform3D(-2.82843, 0, 2.82843, 0, 4, 0, -2.82843, 0, -2.82843, -3.91444, 0.561557, 6.09736)
+transform = Transform3D(-2.82843, 0, 2.82843, 0, 4, 0, -2.82843, 0, -2.82843, -3.91444, 0.554707, 6.09736)
 texture = ExtResource("12_f2uvb")
 hframes = 3
 vframes = 3
@@ -405,4 +487,9 @@ frame = 7
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_diwp6")
 
+[node name="ShaderCache" parent="." instance=ExtResource("3_1vdjv")]
+transform = Transform3D(4.65291, 0, 0, 0, 3.18064, 0, 0, 0, 1, -0.0571246, 1.74093, 3.24137)
+
 [connection signal="pressed" from="CanvasLayer/STARTGAME" to="." method="_on_startgame_pressed"]
+[connection signal="pressed" from="CanvasLayer/HARDMODE" to="." method="_on_hardmode_pressed"]
+[connection signal="pressed" from="CanvasLayer/INFINITE MODE" to="." method="_on_infinite_mode_pressed"]

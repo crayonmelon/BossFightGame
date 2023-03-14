@@ -16,7 +16,6 @@ var current_state = STATE.OPENING
 var difficulty
 
 func _ready():
-	#pause
 	instructions_anim.play("text_anim")
 	
 	await instructions_anim.animation_finished
@@ -33,7 +32,6 @@ func _ready():
 func _win():
 	
 	if current_state == STATE.PLAYING || current_state == STATE.OPENING:
-		
 		timer.stop()
 		
 		if $AnimationSuccess != null:

@@ -1,18 +1,20 @@
-[gd_scene load_steps=48 format=3 uid="uid://v6tdhbmxk6vg"]
+[gd_scene load_steps=58 format=3 uid="uid://v6tdhbmxk6vg"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_yimu3"]
-[ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="2_dod1i"]
-[ext_resource type="PackedScene" uid="uid://3s8i5xmkkkt0" path="res://Scenes/Level/level2.tscn" id="3_ln1av"]
-[ext_resource type="PackedScene" uid="uid://ksr0ddqna674" path="res://Scenes/Level/level3.tscn" id="4_vp85a"]
-[ext_resource type="PackedScene" uid="uid://bpmebecph1j7l" path="res://Scenes/Level/level4.tscn" id="5_eutbu"]
+[ext_resource type="PackedScene" uid="uid://bekq3xphm4bbd" path="res://Scenes/Level/level_final.tscn" id="2_ak0dt"]
+[ext_resource type="PackedScene" uid="uid://3s8i5xmkkkt0" path="res://Scenes/Level/level2.tscn" id="3_48rbg"]
+[ext_resource type="PackedScene" uid="uid://ksr0ddqna674" path="res://Scenes/Level/level3.tscn" id="4_spgdh"]
+[ext_resource type="PackedScene" uid="uid://crpkfmq0daaoi" path="res://Scenes/Level/level4.tscn" id="5_avwbu"]
 [ext_resource type="PackedScene" uid="uid://ccsums78csmik" path="res://models/CRT/CRTBODY/crtbody.tscn" id="5_ux5le"]
+[ext_resource type="PackedScene" uid="uid://c7hdf15476xns" path="res://Scenes/Level/level5.tscn" id="6_oojey"]
 [ext_resource type="AudioStream" uid="uid://bejgq5stm0gf4" path="res://Audio/DrumBeat/beat_1.ogg" id="6_pagr0"]
 [ext_resource type="Script" path="res://Scenes/pitch_scale_time_scale.gd" id="6_q2psu"]
 [ext_resource type="Texture2D" uid="uid://b2huxcy7thdgf" path="res://Sprites/bg_new.png" id="6_sorei"]
-[ext_resource type="PackedScene" uid="uid://c7hdf15476xns" path="res://Scenes/Level/level5.tscn" id="6_ygm73"]
 [ext_resource type="Shader" path="res://Shader/PSX.gdshader" id="7_4mxcu"]
+[ext_resource type="PackedScene" uid="uid://cfgo8vrc2bjbt" path="res://Scenes/Level/level6.tscn" id="7_38hqg"]
 [ext_resource type="PackedScene" uid="uid://b25hnuu7emqan" path="res://Scenes/desk.tscn" id="7_etc0t"]
 [ext_resource type="PackedScene" uid="uid://bc4awsopxk7s4" path="res://Scenes/speaker.tscn" id="7_qqf66"]
+[ext_resource type="PackedScene" uid="uid://buyeook1d50qt" path="res://Scenes/Level/level.tscn" id="8_3gcs0"]
 [ext_resource type="Texture2D" uid="uid://dbd2pofaga4fn" path="res://Sprites/wall.png" id="8_4i7r0"]
 [ext_resource type="AudioStream" uid="uid://bv1t65hhln33i" path="res://Audio/DrumBeat/beat_4.ogg" id="9_gtyuk"]
 [ext_resource type="Texture2D" uid="uid://cid5q46vesf2h" path="res://Sprites/ground.png" id="9_na0bb"]
@@ -25,12 +27,18 @@
 [ext_resource type="AudioStream" uid="uid://cusxppw06b8p" path="res://Audio/DrumBeat/THRILL1   97.wav" id="14_0b868"]
 [ext_resource type="AudioStream" uid="uid://bwy60ff6y0qj3" path="res://Audio/DrumBeat/beat_loop.wav" id="14_7w8am"]
 [ext_resource type="AudioStream" uid="uid://dqqs2vv4qkxm1" path="res://Audio/DrumBeat/THRILL3   97.wav" id="15_u7ejy"]
+[ext_resource type="Script" path="res://Scenes/menus/WorldEnvironment.gd" id="17_3s81i"]
 [ext_resource type="AudioStream" uid="uid://canws0dnwp8xs" path="res://Audio/error/error_1.ogg" id="20_y3f0c"]
+[ext_resource type="Texture2D" uid="uid://cwp8ofsdwcjo2" path="res://Sprites/suit.png" id="27_0b8eb"]
+[ext_resource type="Texture2D" uid="uid://bekj7jplawmlo" path="res://Sprites/drums.png" id="27_ghf5n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q3bc"]
-sky_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
+sky_top_color = Color(0, 0.470588, 0.407843, 1)
+sky_horizon_color = Color(0.576471, 0.498039, 0.67451, 1)
+sky_curve = 0.06
 ground_bottom_color = Color(0.337255, 0, 0.184314, 1)
 ground_horizon_color = Color(0.680564, 0.6135, 0.683578, 1)
+ground_curve = 0.0490368
 
 [sub_resource type="Sky" id="Sky_gmi28"]
 sky_material = SubResource("ProceduralSkyMaterial_2q3bc")
@@ -38,8 +46,10 @@ sky_material = SubResource("ProceduralSkyMaterial_2q3bc")
 [sub_resource type="Environment" id="Environment_6ice1"]
 background_mode = 2
 sky = SubResource("Sky_gmi28")
+ambient_light_color = Color(0.662745, 0.556863, 0.627451, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.8
 tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="Animation" id="Animation_yb5o8"]
 length = 0.001
@@ -188,18 +198,6 @@ _data = {
 "_email_loop": SubResource("Animation_br6wr")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tns6u"]
-render_priority = 0
-shader = ExtResource("7_4mxcu")
-shader_parameter/jitter = 0.0
-shader_parameter/jitter_z_coordinate = true
-shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = false
-shader_parameter/alpha_scissor = 1.0
-shader_parameter/albedo = ExtResource("8_4i7r0")
-
-[sub_resource type="QuadMesh" id="QuadMesh_gd84n"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y71pn"]
 render_priority = 0
 shader = ExtResource("7_4mxcu")
@@ -209,6 +207,8 @@ shader_parameter/jitter_depth_independent = true
 shader_parameter/affine_texture_mapping = false
 shader_parameter/alpha_scissor = 1.0
 shader_parameter/albedo = ExtResource("9_na0bb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gd84n"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ullf4"]
 viewport_path = NodePath("LevelArea/Main_area/BossText/LevelBack/SubViewport")
@@ -351,14 +351,75 @@ _data = {
 "boss_message_outro": SubResource("Animation_vi3tt")
 }
 
+[sub_resource type="Animation" id="Animation_fbwqv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_rm6l3"]
+resource_name = "drumLoop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yj5v1"]
+_data = {
+"RESET": SubResource("Animation_fbwqv"),
+"drumLoop": SubResource("Animation_rm6l3")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uv4co"]
+render_priority = 0
+shader = ExtResource("7_4mxcu")
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("8_4i7r0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gamnp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tns6u"]
+render_priority = 0
+shader = ExtResource("7_4mxcu")
+shader_parameter/jitter = 0.0
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo = ExtResource("8_4i7r0")
+
 [node name="GAMEMANAGER" type="Node"]
 script = ExtResource("1_yimu3")
 testing = false
-LEVELS = Array[Resource]([ExtResource("2_dod1i"), ExtResource("3_ln1av"), ExtResource("4_vp85a"), ExtResource("5_eutbu"), ExtResource("6_ygm73")])
+final_level = ExtResource("2_ak0dt")
+LEVELS = Array[Resource]([ExtResource("8_3gcs0"), ExtResource("3_48rbg"), ExtResource("4_spgdh"), ExtResource("5_avwbu"), ExtResource("6_oojey"), ExtResource("7_38hqg")])
 BEATS = Array[AudioStream]([ExtResource("6_pagr0"), ExtResource("9_gtyuk"), ExtResource("10_jjgoe"), ExtResource("10_dishl"), ExtResource("11_ox20m"), ExtResource("12_21iah"), ExtResource("14_0b868"), ExtResource("15_u7ejy")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6ice1")
+script = ExtResource("17_3s81i")
 
 [node name="LevelContainer" type="Node" parent="."]
 
@@ -464,6 +525,7 @@ libraries = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="LevelArea/Main_area/crtbody/ScreenNode/screenViewport"]
+visible = false
 clip_contents = false
 offset_right = 64.0
 offset_bottom = 40.0
@@ -478,13 +540,8 @@ text = "[center]EMAIL
 fov = 90.0
 size = 4.0
 
-[node name="wall" type="MeshInstance3D" parent="LevelArea/Main_area"]
-transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 2, -0.808116)
-material_override = SubResource("ShaderMaterial_tns6u")
-mesh = SubResource("QuadMesh_gd84n")
-
 [node name="ground" type="MeshInstance3D" parent="LevelArea/Main_area"]
-transform = Transform3D(14.0547, 0, 0, 0, -3.70446e-07, 1.00076, 0, -8.47481, -4.37448e-08, 0, -1.51893, 3.21541)
+transform = Transform3D(14.0547, 0, 0, 0, -4.92549e-07, 1.00076, 0, -11.2682, -4.37448e-08, 0, -1.51893, 4.2119)
 material_override = SubResource("ShaderMaterial_y71pn")
 mesh = SubResource("QuadMesh_gd84n")
 
@@ -534,6 +591,53 @@ visible = true
 
 [node name="desk" parent="LevelArea/Main_area" instance=ExtResource("7_etc0t")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.44592, 0.023904, 0.29015)
+
+[node name="drums" type="Sprite3D" parent="LevelArea/Main_area"]
+transform = Transform3D(-3.46089, 0, 2.00556, 0, 4, 0, -2.00556, 0, -3.46089, -4.5415, 0.476488, 6.56984)
+texture_filter = 0
+texture = ExtResource("27_ghf5n")
+hframes = 3
+vframes = 3
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelArea/Main_area/drums"]
+autoplay = "drumLoop"
+libraries = {
+"": SubResource("AnimationLibrary_yj5v1")
+}
+
+[node name="EvanBoss" type="Sprite3D" parent="LevelArea/Main_area"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.16435, 0.867418, 8.1546)
+visible = false
+texture_filter = 0
+texture = ExtResource("27_0b8eb")
+hframes = 4
+
+[node name="Walls" type="Node3D" parent="LevelArea/Main_area"]
+
+[node name="wall2" type="MeshInstance3D" parent="LevelArea/Main_area/Walls"]
+transform = Transform3D(-5.20049e-07, 0, 1, 0, 8.46834, 0, -11.8973, 0, -4.37114e-08, -7, 2, 4.8239)
+material_override = SubResource("ShaderMaterial_uv4co")
+mesh = SubResource("QuadMesh_gamnp")
+skeleton = NodePath("../../..")
+
+[node name="wall3" type="MeshInstance3D" parent="LevelArea/Main_area/Walls"]
+transform = Transform3D(-15.362, 0, -8.74228e-08, 0, 8.46834, 0, 1.34299e-06, 0, -1, 0, 2, 9.19188)
+material_override = SubResource("ShaderMaterial_uv4co")
+mesh = SubResource("QuadMesh_gamnp")
+skeleton = NodePath("../../..")
+
+[node name="wall4" type="MeshInstance3D" parent="LevelArea/Main_area/Walls"]
+transform = Transform3D(1.42952e-06, 0, -1, 0, 8.46834, 0, 10.9012, 0, 1.31134e-07, 6.97392, 1.98269, 4.41962)
+material_override = SubResource("ShaderMaterial_uv4co")
+mesh = SubResource("QuadMesh_gamnp")
+skeleton = NodePath("../../..")
+
+[node name="wall" type="MeshInstance3D" parent="LevelArea/Main_area/Walls"]
+transform = Transform3D(15.362, 0, 0, 0, 8.46834, 0, 0, 0, 1, 0, 2, -0.808116)
+material_override = SubResource("ShaderMaterial_tns6u")
+mesh = SubResource("QuadMesh_gd84n")
+skeleton = NodePath("../..")
 
 [node name="FailAudio" type="AudioStreamPlayer" parent="LevelArea"]
 stream = ExtResource("20_y3f0c")
